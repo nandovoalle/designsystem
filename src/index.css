@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-size: 16px;
+    /* Blue scale */
+    --blue-800: #13283C;
+    --blue-600: #304A64;
+    --blue-400: #BFD8F3;
+    --blue-200: #9CB1C8;
+    /* Text */
+    --text-primary: #4A4A4A;
+    --text-secondary: #666666;
+    --text-disabled: #9E9E9E;
+    --text-inverse: #FFFFFF;
+    --text-link: #304A64;
+    /* System */
+    --error: #E9786B;
+    --error-bg: #FEF5F4;
+    --divider: #E9EFF2;
+    --tooltip: #2D3135;
+    --bg-btn-disabled: rgba(215,215,215,0.49);
+    --input-background: #F3F3F5;
+    --switch-background: #CBCED4;
+    /* States */
+    --state-primary: #304A64;
+    --state-inverse: #D5E4F6;
+    --state-blue: #0094EE;
+    --state-blue-bg: #E6F4FD;
+    --state-green: #4BAF50;
+    --state-green-2: #67D18A;
+    --state-yellow: #E9C16C;
+    --state-orange: #FF9E5F;
+    --state-red: #E9786B;
+    --state-purple: #8080EC;
+    --state-staging: #F6BD67;
+    /* Surfaces */
+    --surface-1: #32353A;
+    --surface-2: #1D2024;
+    --surface-3: #0B0E12;
+    --surface-4: #2A2D31;
+    --surface-5: #323438;
+    /* Alerts */
+    --alert-blue: #304A64;       --alert-blue-bg: #E6F4FD;
+    --alert-grey: #4A4A4A;       --alert-grey-bg: #F0F0F0;
+    --alert-green: #2D7A31;      --alert-green-bg: #D4EDDA;
+    --alert-red: #C0392B;        --alert-red-bg: #F8D7DA;
+    --alert-yellow: #856404;     --alert-yellow-bg: #FFF3CD;
+    /* Radius */
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --text-primary: #FFFFFF;
+    --text-secondary: #C1C2C4;
+    --text-disabled: #808285;
+    --text-inverse: #4A4A4A;
+    --text-link: #B2C5FF;
+    --divider: #4B4E52;
+    --error-bg: #4B4548;
+    --alert-blue: #9DCBFC;       --alert-blue-bg: #475360;
+    --alert-grey: #FFFFFF;       --alert-grey-bg: #5B5D61;
+    --alert-green: #9ED49D;      --alert-green-bg: #48544D;
+    --alert-red: #FFB4AB;        --alert-red-bg: #5B4E50;
+    --alert-yellow: #E9C16C;     --alert-yellow-bg: #575144;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    font-size: var(--font-size);
+    margin: 0;
+    background: white;
+    color: var(--text-primary);
+  }
+
+  .dark body {
+    background: #0B0E12;
+    color: var(--text-primary);
+  }
+}

@@ -1,0 +1,246 @@
+/* ============================================================
+   SEMANTIC TOKENS — Mapeados por função/intenção
+   Importa e usa primitives.css
+   ============================================================ */
+
+/* ─── LIGHT THEME (padrão) ─── */
+:root,
+[data-theme="light"] {
+
+  /* ─────────────────────────────────────────
+     COLORS — Background
+  ───────────────────────────────────────── */
+  --color-bg-page:        #FAFAFA;
+  --color-bg-sidebar:     #FFFFFF;
+  --color-bg-card:        #FFFFFF;
+  --color-bg-muted:       #F5F5F5;
+  --color-bg-popover:     #FFFFFF;
+  --color-bg-input:       var(--primitive-neutral-150);     /* #F3F3F5 */
+  --color-bg-switch:      var(--primitive-neutral-300);     /* #CBCED4 */
+  --color-bg-btn-disabled: rgba(215,215,215,0.49);
+
+  /* ─────────────────────────────────────────
+     COLORS — Text
+  ───────────────────────────────────────── */
+  --color-text-primary:   var(--primitive-neutral-700);     /* #4A4A4A */
+  --color-text-secondary: var(--primitive-neutral-600);     /* #666666 */
+  --color-text-disabled:  var(--primitive-neutral-400);     /* #9E9E9E */
+  --color-text-inverse:   var(--primitive-neutral-0);       /* #FFFFFF */
+  --color-text-link:      var(--primitive-blue-600);        /* #304A64 */
+  --color-text-heading:   var(--primitive-neutral-950);     /* #0B0E12 */
+
+  /* ─────────────────────────────────────────
+     COLORS — Border / Divider
+  ───────────────────────────────────────── */
+  --color-border:         var(--primitive-neutral-250);     /* #E9EFF2 */
+  --color-border-strong:  var(--primitive-neutral-200);     /* #EBEBEB */
+  --color-divider:        var(--primitive-neutral-250);
+
+  /* ─────────────────────────────────────────
+     COLORS — Brand (Blue Scale)
+  ───────────────────────────────────────── */
+  --color-brand-900:      var(--primitive-blue-800);        /* #13283C */
+  --color-brand-700:      var(--primitive-blue-600);        /* #304A64 */
+  --color-brand-300:      var(--primitive-blue-400);        /* #BFD8F3 */
+  --color-brand-100:      var(--primitive-blue-200);        /* #9CB1C8 */
+
+  /* ─────────────────────────────────────────
+     COLORS — Interactive (Primary)
+  ───────────────────────────────────────── */
+  --color-interactive-bg:       var(--primitive-neutral-950);    /* quase preto */
+  --color-interactive-fg:       var(--primitive-neutral-0);
+  --color-interactive-hover-bg: var(--primitive-neutral-200);
+  --color-interactive-hover-fg: var(--primitive-neutral-950);
+
+  /* ─────────────────────────────────────────
+     COLORS — Semantic States
+  ───────────────────────────────────────── */
+  --color-success:        var(--primitive-green-400);       /* #4BAF50 */
+  --color-success-alt:    var(--primitive-green-300);       /* #67D18A */
+  --color-success-bg:     var(--primitive-green-100);       /* #D4EDDA */
+  --color-info:           var(--primitive-info-400);        /* #0094EE */
+  --color-info-bg:        var(--primitive-info-100);        /* #E6F4FD */
+  --color-warning:        var(--primitive-yellow-200);      /* #E9C16C */
+  --color-warning-bg:     var(--primitive-yellow-100);      /* #FFF3CD */
+  --color-error:          var(--primitive-red-400);         /* #E9786B */
+  --color-error-bg:       var(--primitive-red-100);         /* #FEF5F4 */
+  --color-orange:         var(--primitive-orange-400);      /* #FF9E5F */
+  --color-purple:         var(--primitive-purple-400);      /* #8080EC */
+  --color-staging:        var(--primitive-staging-400);     /* #F6BD67 */
+
+  /* ─────────────────────────────────────────
+     COLORS — Alert Component Pairs
+  ───────────────────────────────────────── */
+  --color-alert-blue-text: var(--primitive-blue-600);
+  --color-alert-blue-bg:   var(--primitive-info-100);
+  --color-alert-grey-text: var(--primitive-neutral-700);
+  --color-alert-grey-bg:   var(--primitive-neutral-100);
+  --color-alert-green-text: #2D7A31;
+  --color-alert-green-bg:  var(--primitive-green-100);
+  --color-alert-red-text:  #C0392B;
+  --color-alert-red-bg:    var(--primitive-red-200);
+  --color-alert-yellow-text: #856404;
+  --color-alert-yellow-bg:  var(--primitive-yellow-100);
+
+  /* ─────────────────────────────────────────
+     COLORS — Badge Variants
+  ───────────────────────────────────────── */
+  --color-badge-red:    var(--primitive-red-400);
+  --color-badge-yellow: var(--primitive-yellow-200);
+  --color-badge-blue:   var(--primitive-info-400);
+  --color-badge-green:  var(--primitive-green-400);
+  --color-badge-text:   var(--primitive-neutral-0);
+
+  /* ─────────────────────────────────────────
+     COLORS — Tooltip
+  ───────────────────────────────────────── */
+  --color-tooltip-bg:   var(--primitive-neutral-800);       /* #2D3135 */
+  --color-tooltip-text: var(--primitive-neutral-0);
+
+  /* ─────────────────────────────────────────
+     TYPOGRAPHY — Role mapping
+  ───────────────────────────────────────── */
+  --font-display:   var(--primitive-font-family-display);
+  --font-sans:      var(--primitive-font-family-sans);
+  --font-mono:      var(--primitive-font-family-mono);
+
+  /* Headline */
+  --type-headline-lg-size:    var(--primitive-font-size-32);
+  --type-headline-lg-lh:      var(--primitive-line-height-40);
+  --type-headline-lg-weight:  var(--primitive-font-weight-regular);
+  --type-headline-md-size:    var(--primitive-font-size-28);
+  --type-headline-md-lh:      var(--primitive-line-height-36);
+  --type-headline-md-weight:  var(--primitive-font-weight-regular);
+  --type-headline-sm-size:    var(--primitive-font-size-24);
+  --type-headline-sm-lh:      var(--primitive-line-height-32);
+  --type-headline-sm-weight:  var(--primitive-font-weight-regular);
+
+  /* Title */
+  --type-title-lg-size:   var(--primitive-font-size-22);
+  --type-title-lg-lh:     var(--primitive-line-height-28);
+  --type-title-lg-weight: var(--primitive-font-weight-medium);
+  --type-title-md-size:   var(--primitive-font-size-20);
+  --type-title-md-lh:     var(--primitive-line-height-30);
+  --type-title-md-weight: var(--primitive-font-weight-medium);
+  --type-title-sm-size:   var(--primitive-font-size-18);
+  --type-title-sm-lh:     var(--primitive-line-height-27);
+  --type-title-sm-weight: var(--primitive-font-weight-semibold);
+
+  /* Body */
+  --type-body-lg-size:   var(--primitive-font-size-18);
+  --type-body-lg-lh:     var(--primitive-line-height-27);
+  --type-body-md-size:   var(--primitive-font-size-16);
+  --type-body-md-lh:     var(--primitive-line-height-24);
+  --type-body-sm-size:   var(--primitive-font-size-14);
+  --type-body-sm-lh:     var(--primitive-line-height-20);
+
+  /* Label / Caption */
+  --type-label-size:   var(--primitive-font-size-12);
+  --type-label-lh:     var(--primitive-line-height-16);
+  --type-caption-size: var(--primitive-font-size-11);
+  --type-caption-lh:   var(--primitive-line-height-16);
+
+  /* ─────────────────────────────────────────
+     SPACING — Aliases semânticos
+  ───────────────────────────────────────── */
+  --space-component-xs:  var(--primitive-space-1);   /* 4px  — badge padding */
+  --space-component-sm:  var(--primitive-space-2);   /* 8px  — nav item v-padding */
+  --space-component-md:  var(--primitive-space-3);   /* 12px — nav item h-padding */
+  --space-component-lg:  var(--primitive-space-4);   /* 16px — default gap */
+  --space-section-sm:    var(--primitive-space-6);   /* 24px — card padding sm */
+  --space-section-md:    var(--primitive-space-8);   /* 32px — card padding lg */
+  --space-section-lg:    var(--primitive-space-12);  /* 48px — section spacing */
+  --space-content:       var(--primitive-space-17);  /* 68px — main content padding */
+
+  /* ─────────────────────────────────────────
+     BORDER RADIUS — Aliases semânticos
+  ───────────────────────────────────────── */
+  --radius-badge:     var(--primitive-radius-sm);   /* 4px */
+  --radius-button:    var(--primitive-radius-md);   /* 8px */
+  --radius-input:     var(--primitive-radius-md);   /* 8px */
+  --radius-nav-item:  var(--primitive-radius-lg);   /* 10px */
+  --radius-container: var(--primitive-radius-lg);   /* 10px */
+  --radius-card:      var(--primitive-radius-xl);   /* 14px */
+  --radius-pill:      var(--primitive-radius-full); /* 9999px */
+  --radius-favicon:   2px;                          /* Favicon spec */
+
+  /* ─────────────────────────────────────────
+     SHADOWS — Aliases semânticos
+  ───────────────────────────────────────── */
+  --shadow-card:      var(--primitive-shadow-xs);
+  --shadow-dropdown:  var(--primitive-shadow-sm);
+  --shadow-modal:     var(--primitive-shadow-md);
+
+  /* ─────────────────────────────────────────
+     TRANSITIONS — Aliases semânticos
+  ───────────────────────────────────────── */
+  --transition-interactive: var(--primitive-duration-base) var(--primitive-easing-standard);
+  --transition-layout:      var(--primitive-duration-slow) var(--primitive-easing-standard);
+
+  /* ─────────────────────────────────────────
+     Z-INDEX — Aliases semânticos
+  ───────────────────────────────────────── */
+  --z-sidebar:  var(--primitive-z-sidebar);
+  --z-dropdown: var(--primitive-z-dropdown);
+  --z-modal:    var(--primitive-z-modal);
+  --z-tooltip:  var(--primitive-z-tooltip);
+  --z-toast:    var(--primitive-z-toast);
+
+  /* ─────────────────────────────────────────
+     LAYOUT
+  ───────────────────────────────────────── */
+  --sidebar-width:     256px;    /* w-64 */
+  --content-max-width: 1152px;   /* max-w-6xl */
+  --nav-item-height:   36px;
+}
+
+/* ─── DARK THEME ─── */
+[data-theme="dark"],
+.dark {
+
+  --color-bg-page:        #0B0E12;
+  --color-bg-sidebar:     #111317;
+  --color-bg-card:        #0B0E12;
+  --color-bg-muted:       #1D2024;
+  --color-bg-popover:     #1D2024;
+
+  --color-text-primary:   #FFFFFF;
+  --color-text-secondary: #C1C2C4;
+  --color-text-disabled:  #808285;
+  --color-text-inverse:   #4A4A4A;
+  --color-text-link:      #B2C5FF;
+  --color-text-heading:   #FFFFFF;
+
+  --color-border:         #4B4E52;
+  --color-border-strong:  #4B4E52;
+  --color-divider:        #4B4E52;
+
+  --color-brand-900:      #D0E4FF;
+  --color-brand-700:      #9DCBFC;
+  --color-brand-300:      #3A4857;
+  --color-brand-100:      #CED8E4;
+
+  --color-interactive-bg:       #FFFFFF;
+  --color-interactive-fg:       #1A1A1A;
+  --color-interactive-hover-bg: #1D2024;
+  --color-interactive-hover-fg: #FFFFFF;
+
+  --color-success-bg:   #48544D;
+  --color-info-bg:      #475360;
+  --color-warning-bg:   #575144;
+  --color-error-bg:     #5B4E50;
+
+  --color-alert-blue-text:   #9DCBFC;
+  --color-alert-blue-bg:     #475360;
+  --color-alert-grey-text:   #FFFFFF;
+  --color-alert-grey-bg:     #5B5D61;
+  --color-alert-green-text:  #9ED49D;
+  --color-alert-green-bg:    #48544D;
+  --color-alert-red-text:    #FFB4AB;
+  --color-alert-red-bg:      #5B4E50;
+  --color-alert-yellow-text: #E9C16C;
+  --color-alert-yellow-bg:   #575144;
+
+  --color-tooltip-bg:   #E0E2E8;
+  --color-tooltip-text: #1A1A1A;
+}

@@ -1,13 +1,28 @@
-import { Info, AlertCircle, CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
+import { Info, AlertCircle, XCircle, AlertTriangle } from 'lucide-react'
 import { PageHeader } from '../components/PageHeader'
+
+function CheckCircleOutline({ size = 24, style }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={style}>
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/>
+    </svg>
+  )
+}
+
+function CloseIcon({ size = 20, style }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="currentColor" style={style}>
+      <path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+    </svg>
+  )
+}
 
 const ALERTS = [
   {
     type: 'blue',
     label: 'Info',
     icon: Info,
-    title: 'Informação',
-    message: 'Uma informação importante para o usuário.',
+    message: 'This is a primary alert—check it out!',
     textColor: 'var(--alert-blue)',
     bgColor: 'var(--alert-blue-bg)',
   },
@@ -15,17 +30,15 @@ const ALERTS = [
     type: 'grey',
     label: 'Grey',
     icon: AlertCircle,
-    title: 'Neutro',
-    message: 'Uma mensagem neutra ou de contexto geral.',
+    message: 'This is a secondary alert—check it out!',
     textColor: 'var(--alert-grey)',
     bgColor: 'var(--alert-grey-bg)',
   },
   {
     type: 'green',
     label: 'Success',
-    icon: CheckCircle,
-    title: 'Sucesso',
-    message: 'A operação foi concluída com sucesso.',
+    icon: CheckCircleOutline,
+    message: 'This is a success alert—check it out!',
     textColor: 'var(--alert-green)',
     bgColor: 'var(--alert-green-bg)',
   },
@@ -33,8 +46,7 @@ const ALERTS = [
     type: 'red',
     label: 'Error',
     icon: XCircle,
-    title: 'Erro',
-    message: 'Ocorreu um problema. Por favor, tente novamente.',
+    message: 'This is a danger alert—check it out!',
     textColor: 'var(--alert-red)',
     bgColor: 'var(--alert-red-bg)',
   },
@@ -42,24 +54,21 @@ const ALERTS = [
     type: 'yellow',
     label: 'Warning',
     icon: AlertTriangle,
-    title: 'Aviso',
-    message: 'Atenção: verifique as informações antes de continuar.',
+    message: 'This is a warning alert—check it out!',
     textColor: 'var(--alert-yellow)',
     bgColor: 'var(--alert-yellow-bg)',
   },
 ]
 
-function Alert({ icon: Icon, title, message, textColor, bgColor }) {
+function Alert({ icon: Icon, message, textColor, bgColor }) {
   return (
     <div
-      className="flex items-start gap-3 p-4 rounded-[10px]"
+      className="flex items-center gap-3 px-4 py-4 rounded-[4px]"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
-      <Icon size={20} style={{ color: textColor, flexShrink: 0, marginTop: 2 }} />
-      <div>
-        <p className="text-sm font-semibold">{title}</p>
-        <p className="text-sm mt-0.5">{message}</p>
-      </div>
+      <Icon size={24} style={{ color: textColor, flexShrink: 0 }} />
+      <span className="flex-1 text-sm" style={{ fontWeight: 500 }}>{message}</span>
+      <CloseIcon size={20} style={{ color: textColor, flexShrink: 0, cursor: 'pointer' }} />
     </div>
   )
 }

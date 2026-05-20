@@ -43,10 +43,10 @@
     --surface-4: #2A2D31;
     --surface-5: #323438;
     /* Alerts */
-    --alert-blue: #304A64;       --alert-blue-bg: #E6F4FD;
-    --alert-grey: #4A4A4A;       --alert-grey-bg: #F0F0F0;
-    --alert-green: #2D7A31;      --alert-green-bg: #D4EDDA;
-    --alert-red: #C0392B;        --alert-red-bg: #F8D7DA;
+    --alert-blue: #004085;       --alert-blue-bg: #cce5ff;
+    --alert-grey: #383d41;       --alert-grey-bg: #e2e3e5;
+    --alert-green: #155724;      --alert-green-bg: #D4EDDA;
+    --alert-red: #721c24;        --alert-red-bg: #F8D7DA;
     --alert-yellow: #856404;     --alert-yellow-bg: #FFF3CD;
     /* Radius */
     --radius: 0.625rem;

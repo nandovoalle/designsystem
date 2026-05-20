@@ -27,7 +27,7 @@ export default function App() {
         {/* Header */}
         <div className="p-6 border-b border-[#E9EFF2] flex items-center gap-2">
           <Palette size={24} className="text-[#13283C]" />
-          <span className="font-semibold text-[#13283C]">Design System 1</span>
+          <span className="font-semibold text-[#13283C]">Design System</span>
         </div>
 
         {/* Nav */}

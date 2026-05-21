@@ -184,23 +184,22 @@ export default function ActionBarsPage() {
           </div>
         </div>
 
-        {/* Anatomy */}
+        {/* Especificações Técnicas */}
         <div className="mb-12">
-          <h2 className="text-xl font-medium text-[#13283C] mb-2">Anatomia</h2>
-          <p className="text-sm text-[#666666] mb-6">Medidas e espaçamentos do componente.</p>
-          <div className="grid md:grid-cols-3 gap-4">
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
             {[
-              { label: 'Botão',      desc: '40 × 40 px',  sub: 'Área de toque' },
-              { label: 'Ícone',      desc: '24 × 24 px',  sub: 'Plus (Lucide)' },
-              { label: 'State Layer',desc: '8 px padding', sub: 'Ao redor do ícone' },
-              { label: 'Tooltip',    desc: '3 px radius',  sub: 'px: 8 py: 4' },
-              { label: 'Tooltip',    desc: '12 px / 16 px',sub: 'Font size / Line height' },
-              { label: 'Tooltip',    desc: '0.4 px',       sub: 'Letter spacing' },
-            ].map(({ label, desc, sub }) => (
-              <div key={`${label}-${desc}`} className="bg-white rounded-[14px] border border-black/10 p-5">
-                <p className="text-xs font-medium text-[#9E9E9E] uppercase tracking-wide mb-1">{label}</p>
-                <p className="text-sm font-semibold text-[#13283C]">{desc}</p>
-                <p className="text-xs text-[#666666] mt-0.5">{sub}</p>
+              ['Tamanho do botão', '40 × 40 px — área de toque mínima'],
+              ['Tamanho do ícone', '24 × 24 px — ícone Plus (Lucide)'],
+              ['State layer padding', '8 px ao redor do ícone'],
+              ['Tooltip border radius', '3 px'],
+              ['Tooltip padding', '4 px vertical / 8 px horizontal'],
+              ['Tooltip tipografia', '12 px / 16 px (font size / line height)'],
+              ['Tooltip letter spacing', '0.4 px'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

@@ -231,26 +231,24 @@ export default function ButtonsPage() {
           </div>
         </div>
 
-        {/* Anatomy */}
+        {/* Especificações Técnicas */}
         <div className="mb-12">
-          <h2 className="text-xl font-medium text-[#13283C] mb-2">Anatomia</h2>
-          <p className="text-sm text-[#666666] mb-6">Medidas e espaçamentos do componente.</p>
-          <div className="grid md:grid-cols-3 gap-4">
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
             {[
-              { label: 'Altura',           desc: '40 px',                    sub: 'Altura fixa do botão' },
-              { label: 'Padding (sem ícone)',desc: '24 px horizontal',        sub: 'Esquerda e direita' },
-              { label: 'Padding (com ícone)',desc: '16 px esq. / 24 px dir.', sub: 'Mais espaço para o ícone' },
-              { label: 'Ícone',            desc: '24 × 24 px',               sub: 'Plus (Lucide / MDI)' },
-              { label: 'Gap (ícone + label)',desc: '8 px',                   sub: 'Espaço entre ícone e texto' },
-              { label: 'Border Radius',    desc: '4 px',                     sub: 'Container e state layer' },
-              { label: 'Tipografia',       desc: '14 px / 500 / 20 px',      sub: 'Red Hat Display Medium' },
-              { label: 'Letter Spacing',   desc: '0.1 px',                   sub: 'Tracking do label' },
-              { label: 'State Layer',      desc: 'Overlay RGBA',             sub: 'Cobrindo toda a área do botão' },
-            ].map(({ label, desc, sub }) => (
-              <div key={`${label}-${desc}`} className="bg-white rounded-[14px] border border-black/10 p-5">
-                <p className="text-xs font-medium text-[#9E9E9E] uppercase tracking-wide mb-1">{label}</p>
-                <p className="text-sm font-semibold text-[#13283C]">{desc}</p>
-                <p className="text-xs text-[#666666] mt-0.5">{sub}</p>
+              ['Altura', '40 px — altura fixa do botão'],
+              ['Padding (sem ícone)', '24 px horizontal — esquerda e direita'],
+              ['Padding (com ícone)', '16 px esquerda / 24 px direita'],
+              ['Tamanho do ícone', '24 × 24 px — Plus (Lucide / MDI)'],
+              ['Gap ícone + label', '8 px'],
+              ['Border radius', '4 px — container e state layer'],
+              ['Tipografia', 'Red Hat Display Medium — 14 px / 20 px (font size / line height)'],
+              ['Letter spacing', '0.1 px'],
+              ['State layer', 'Overlay RGBA cobrindo toda a área do botão'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

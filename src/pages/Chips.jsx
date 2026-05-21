@@ -260,29 +260,29 @@ export default function ChipsPage() {
           </div>
         </div>
 
-        {/* Anatomy */}
+        {/* Especificações Técnicas */}
         <div className="mb-12">
-          <h2 className="text-xl font-medium text-[#13283C] mb-2">Anatomia</h2>
-          <p className="text-sm text-[#666666] mb-6">Medidas e espaçamentos do componente.</p>
-          <div className="grid md:grid-cols-3 gap-4">
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
             {[
-              { label: 'Altura — XS',         desc: '24 px',              sub: 'Padding vertical: 4 px' },
-              { label: 'Altura — SM',         desc: '28 px',              sub: 'Padding vertical: 4 px' },
-              { label: 'Altura — Base',       desc: '32 px',              sub: 'Padding vertical: 4 px' },
-              { label: 'Padding — XS',        desc: '8 px horizontal',    sub: 'Reduz para 6 px ao lado do ícone' },
-              { label: 'Padding — SM',        desc: '10 px horizontal',   sub: 'Reduz para 8 px ao lado do ícone' },
-              { label: 'Padding — Base',      desc: '12 px horizontal',   sub: 'Reduz para 10 px ao lado do ícone' },
-              { label: 'Ícone — XS',          desc: '16 × 16 px',         sub: 'check_circle / close (MDI)' },
-              { label: 'Ícone — SM / Base',   desc: '20 × 20 px',         sub: 'check_circle / close (MDI)' },
-              { label: 'Gap ícone + label',   desc: '4 px',               sub: 'Espaço entre elementos internos' },
-              { label: 'Border Radius',       desc: '4 px',               sub: 'Container e state layer' },
-              { label: 'Tipografia — XS',     desc: '12 px / 500 / 16 px',sub: 'Red Hat Display Medium, ls 0.5 px' },
-              { label: 'Tipografia — SM/Base',desc: '14 px / 500 / 20 px',sub: 'Red Hat Display Medium, ls 0.1 px' },
-            ].map(({ label, desc, sub }) => (
-              <div key={`${label}-${desc}`} className="bg-white rounded-[14px] border border-black/10 p-5">
-                <p className="text-xs font-medium text-[#9E9E9E] uppercase tracking-wide mb-1">{label}</p>
-                <p className="text-sm font-semibold text-[#13283C]">{desc}</p>
-                <p className="text-xs text-[#666666] mt-0.5">{sub}</p>
+              ['Altura — XS', '24 px — padding vertical: 4 px'],
+              ['Altura — SM', '28 px — padding vertical: 4 px'],
+              ['Altura — Base', '32 px — padding vertical: 4 px'],
+              ['Padding horizontal — XS', '8 px (reduz para 6 px ao lado do ícone)'],
+              ['Padding horizontal — SM', '10 px (reduz para 8 px ao lado do ícone)'],
+              ['Padding horizontal — Base', '12 px (reduz para 10 px ao lado do ícone)'],
+              ['Tamanho do ícone — XS', '16 × 16 px — check_circle / close (MDI)'],
+              ['Tamanho do ícone — SM / Base', '20 × 20 px — check_circle / close (MDI)'],
+              ['Gap ícone + label', '4 px'],
+              ['Border radius', '4 px — container e state layer'],
+              ['Tipografia — XS', 'Red Hat Display Medium — 12 px / 16 px (font size / line height), letter spacing 0.5 px'],
+              ['Cor do texto — ativo', '#FFFFFF (--text-inverse)'],
+              ['Cor do texto — disabled', '#9E9E9E (--text-disabled)'],
+              ['Tipografia — SM / Base', 'Red Hat Display Medium — 14 px / 20 px (font size / line height), letter spacing 0.1 px'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

@@ -217,26 +217,26 @@ export default function CardsPage() {
           </div>
         </div>
 
-        {/* Anatomy */}
+        {/* Especificações Técnicas */}
         <div className="mb-12">
-          <h2 className="text-xl font-medium text-[#13283C] mb-2">Anatomia</h2>
-          <p className="text-sm text-[#666666] mb-6">Medidas e espaçamentos do componente.</p>
-          <div className="grid md:grid-cols-3 gap-4">
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
             {[
-              { label: 'Largura',       desc: '328 px',             sub: 'Largura fixa do card' },
-              { label: 'Altura',        desc: '219 px',             sub: 'Altura fixa do card' },
-              { label: 'Padding',       desc: '24 px',              sub: 'Padding interno em todos os lados' },
-              { label: 'Gap interno',   desc: '16 px',              sub: 'Espaço entre header, body e footer' },
-              { label: 'Ícone header',  desc: '40 × 40 px',         sub: 'Container do ícone com borda' },
-              { label: 'Chip',          desc: '16 px altura',       sub: 'Badge de categoria/label' },
-              { label: 'Título',        desc: '16 px / 700 / 24 px',sub: 'Red Hat Display Bold' },
-              { label: 'Descrição',     desc: '14 px / 400',        sub: 'Red Hat Display Regular' },
-              { label: 'Border Radius', desc: '4 px',               sub: 'Card container e elementos internos' },
-            ].map(({ label, desc, sub }) => (
-              <div key={label} className="bg-white rounded-[14px] border border-black/10 p-5">
-                <p className="text-xs font-medium text-[#9E9E9E] uppercase tracking-wide mb-1">{label}</p>
-                <p className="text-sm font-semibold text-[#13283C]">{desc}</p>
-                <p className="text-xs text-[#666666] mt-0.5">{sub}</p>
+              ['Largura', '328 px — largura fixa do card'],
+              ['Altura', '219 px — altura fixa do card'],
+              ['Padding', '24 px em todos os lados'],
+              ['Gap interno', '16 px — entre header, body e footer'],
+              ['Ícone header', '40 × 40 px — container do ícone com borda'],
+              ['Chip altura', '16 px — badge de categoria/label'],
+              ['Tipografia do título', 'Red Hat Display Bold — 16 px / 24 px (font size / line height), letter spacing 0.15 px'],
+              ['Cor do título', '#4A4A4A (--text-primary)'],
+              ['Tipografia da descrição', 'Red Hat Display Regular — 14 px / 20 px (font size / line height), letter spacing 0.25 px'],
+              ['Cor da descrição', '#666666 (--text-secondary)'],
+              ['Border radius', '4 px — card container e elementos internos'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

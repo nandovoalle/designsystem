@@ -1,6 +1,6 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
 import {
-  Palette, House, Image, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation, SquareMousePointer, RectangleHorizontal, LayoutTemplate
+  Palette, House, Image, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation, SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -14,6 +14,7 @@ import BreadcrumbPage from './pages/Breadcrumb'
 import IconButtonPage from './pages/IconButton'
 import ButtonsPage from './pages/Buttons'
 import CardsPage from './pages/Cards'
+import ChipsPage from './pages/Chips'
 
 const navItems = [
   { to: '/',             label: 'Início',       Icon: House },
@@ -27,6 +28,7 @@ const navItems = [
   { to: '/icon-button',  label: 'Icon Button',  Icon: SquareMousePointer },
   { to: '/buttons',      label: 'Buttons',      Icon: RectangleHorizontal },
   { to: '/cards',        label: 'Cards',        Icon: LayoutTemplate },
+  { to: '/chips',        label: 'Chips',        Icon: Tag },
 ]
 
 export default function App() {
@@ -81,6 +83,7 @@ export default function App() {
           <Route path="/icon-button"  element={<IconButtonPage />} />
           <Route path="/buttons"      element={<ButtonsPage />} />
           <Route path="/cards"        element={<CardsPage />} />
+          <Route path="/chips"        element={<ChipsPage />} />
         </Routes>
       </main>
     </div>

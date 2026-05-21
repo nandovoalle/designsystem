@@ -1,6 +1,6 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
 import {
-  Palette, House, Image, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation
+  Palette, House, Image, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation, Calendar, CheckSquare
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -11,6 +11,8 @@ import AlertsPage from './pages/Alerts'
 import FaviconPage from './pages/Favicon'
 import ActionBarsPage from './pages/ActionBars'
 import BreadcrumbPage from './pages/Breadcrumb'
+import DateFieldPage from './pages/DateField'
+import CheckboxPage from './pages/Checkbox'
 
 const navItems = [
   { to: '/',            label: 'Início',      Icon: House },
@@ -21,6 +23,8 @@ const navItems = [
   { to: '/favicon',     label: 'Favicon',     Icon: Globe },
   { to: '/action-bars', label: 'Action bars', Icon: MousePointerClick },
   { to: '/breadcrumb',  label: 'Breadcrumb',  Icon: Navigation },
+  { to: '/date-field',  label: 'Date Field',  Icon: Calendar   },
+  { to: '/checkbox',    label: 'Checkbox',    Icon: CheckSquare },
 ]
 
 export default function App() {
@@ -72,6 +76,8 @@ export default function App() {
           <Route path="/favicon"      element={<FaviconPage />} />
           <Route path="/action-bars" element={<ActionBarsPage />} />
           <Route path="/breadcrumb"  element={<BreadcrumbPage />} />
+          <Route path="/date-field"  element={<DateFieldPage />} />
+          <Route path="/checkbox"    element={<CheckboxPage />} />
         </Routes>
       </main>
     </div>

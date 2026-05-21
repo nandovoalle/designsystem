@@ -255,7 +255,7 @@ export default function ButtonsPage() {
         </div>
 
         {/* Usage guide */}
-        <div>
+        <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-4">Quando Usar</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -293,6 +293,29 @@ export default function ButtonsPage() {
                   <p className="text-sm font-medium text-[#13283C]">{label}</p>
                   <p className="text-xs text-[#666666] mt-0.5">{desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Especificações Técnicas */}
+        <div>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+            {[
+              ['Altura', '40px — fixa para todos os estilos'],
+              ['Padding sem ícone', '24px horizontal (esquerda e direita)'],
+              ['Padding com ícone', '16px esquerda, 24px direita'],
+              ['Ícone', '24×24px — Plus (Lucide), à esquerda do label'],
+              ['Gap ícone + label', '8px'],
+              ['Border radius', '4px — container e state layer'],
+              ['Tipografia', '14px / 500 / 20px, letter-spacing 0.1px, Red Hat Display'],
+              ['Estilos', 'Primary, Secondary, Outlined, Cancel, Text'],
+              ['Estados', 'Enabled, Hovered, Focused, Pressed, Disabled'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

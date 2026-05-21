@@ -206,7 +206,7 @@ export default function ActionBarsPage() {
         </div>
 
         {/* Usage guide */}
-        <div>
+        <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-4">Quando Usar</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -228,6 +228,29 @@ export default function ActionBarsPage() {
                   <p className="text-sm font-medium text-[#13283C]">{label}</p>
                   <p className="text-xs text-[#666666] mt-0.5">{desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Especificações Técnicas */}
+        <div>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+            {[
+              ['Área de toque', '40×40px'],
+              ['Ícone', '24×24px — Plus (Lucide)'],
+              ['Border radius', '0px — sem arredondamento no container'],
+              ['Tooltip border radius', '3px'],
+              ['Tooltip padding', '4px vertical, 8px horizontal'],
+              ['Tipografia tooltip', '12px / 400 / 16px, letter-spacing 0.4px, Red Hat Display'],
+              ['Variante barra lateral', 'Tooltip posicionado à direita do ícone'],
+              ['Variante atendimento', 'Tooltip posicionado à esquerda do ícone'],
+              ['Tokens', '--blue-600, --tooltip, --text-inverse, --text-disabled'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

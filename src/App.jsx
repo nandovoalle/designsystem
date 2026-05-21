@@ -2,7 +2,7 @@ import { Routes, Route, NavLink } from 'react-router-dom'
 import {
   Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation,
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
-  PanelLeft
+  PanelLeft, PanelRight
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -20,6 +20,7 @@ import ChipsPage from './pages/Chips'
 import DateFieldPage from './pages/DateField'
 import CheckboxPage from './pages/Checkbox'
 import ServiceCenterPage from './pages/ServiceCenter'
+import DrawerPage from './pages/Drawer'
 
 const navItems = [
   { to: '/',            label: 'Início',      Icon: House },
@@ -37,6 +38,7 @@ const navItems = [
   { to: '/date-field',  label: 'Date Field',  Icon: Calendar },
   { to: '/checkbox',        label: 'Checkbox',        Icon: CheckSquare },
   { to: '/service-center',  label: 'Service Center',  Icon: PanelLeft },
+  { to: '/drawer',          label: 'Drawer',          Icon: PanelRight },
 ]
 
 export default function App() {
@@ -95,6 +97,7 @@ export default function App() {
           <Route path="/date-field"  element={<DateFieldPage />} />
           <Route path="/checkbox"        element={<CheckboxPage />} />
           <Route path="/service-center"  element={<ServiceCenterPage />} />
+          <Route path="/drawer"          element={<DrawerPage />} />
         </Routes>
       </main>
     </div>

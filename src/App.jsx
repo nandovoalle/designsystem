@@ -1,6 +1,6 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
 import {
-  Palette, House, Image, Type, Globe, CircleAlert, Award
+  Palette, House, Image, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -9,14 +9,18 @@ import TypographyPage from './pages/Typography'
 import BadgesPage from './pages/Badges'
 import AlertsPage from './pages/Alerts'
 import FaviconPage from './pages/Favicon'
+import ActionBarsPage from './pages/ActionBars'
+import BreadcrumbPage from './pages/Breadcrumb'
 
 const navItems = [
-  { to: '/',           label: 'Início',     Icon: House },
-  { to: '/colors',     label: 'Cores',      Icon: Palette },
-  { to: '/typography', label: 'Typography', Icon: Type },
-  { to: '/alerts',     label: 'Alerts',     Icon: CircleAlert },
-  { to: '/badges',     label: 'Badges',     Icon: Award },
-  { to: '/favicon',    label: 'Favicon',    Icon: Globe },
+  { to: '/',            label: 'Início',      Icon: House },
+  { to: '/colors',      label: 'Cores',       Icon: Palette },
+  { to: '/typography',  label: 'Typography',  Icon: Type },
+  { to: '/alerts',      label: 'Alerts',      Icon: CircleAlert },
+  { to: '/badges',      label: 'Badges',      Icon: Award },
+  { to: '/favicon',     label: 'Favicon',     Icon: Globe },
+  { to: '/action-bars', label: 'Action bars', Icon: MousePointerClick },
+  { to: '/breadcrumb',  label: 'Breadcrumb',  Icon: Navigation },
 ]
 
 export default function App() {
@@ -65,7 +69,9 @@ export default function App() {
           <Route path="/typography" element={<TypographyPage />} />
           <Route path="/alerts"     element={<AlertsPage />} />
           <Route path="/badges"     element={<BadgesPage />} />
-          <Route path="/favicon"    element={<FaviconPage />} />
+          <Route path="/favicon"      element={<FaviconPage />} />
+          <Route path="/action-bars" element={<ActionBarsPage />} />
+          <Route path="/breadcrumb"  element={<BreadcrumbPage />} />
         </Routes>
       </main>
     </div>

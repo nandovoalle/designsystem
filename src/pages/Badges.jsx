@@ -91,7 +91,7 @@ export default function BadgesPage() {
         </div>
 
         {/* Semântica */}
-        <div>
+        <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-2">Cores e Significados</h2>
           <p className="text-sm text-[#666666] mb-6">Cada cor carrega um significado semântico.</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -108,6 +108,26 @@ export default function BadgesPage() {
                 </div>
                 <p className="text-xs text-[#666666] mb-2">{meaning}</p>
                 <code className="text-xs font-mono text-[#9E9E9E]">{token}</code>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Especificações Técnicas */}
+        <div>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+            {[
+              ['Small badge', '8×8px, border-radius 50%'],
+              ['Large badge (1 dígito)', '20×20px, border-radius 50%'],
+              ['Large badge (2+ dígitos)', 'Largura automática, padding 0 5px, altura 20px'],
+              ['Limite de contagem', '99 — exibe "+99" para valores superiores'],
+              ['Tipografia', '10px, font-weight 700, cor #FFFFFF'],
+              ['Tokens de cor', '--state-red, --state-yellow, --state-blue, --state-green'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

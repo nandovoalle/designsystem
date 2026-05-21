@@ -289,7 +289,7 @@ export default function ChipsPage() {
         </div>
 
         {/* Usage guide */}
-        <div>
+        <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-4">Quando Usar</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -327,6 +327,32 @@ export default function ChipsPage() {
                   <p className="text-sm font-medium text-[#13283C]">{label}</p>
                   <p className="text-xs text-[#666666] mt-0.5">{desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Especificações Técnicas */}
+        <div>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+            {[
+              ['Alturas', 'XS: 24px, SM: 28px, Base: 32px'],
+              ['Border radius', '4px — container e state layer'],
+              ['Padding vertical', '4px (todos os tamanhos)'],
+              ['Padding horizontal XS', '8px (reduz para 6px ao lado do ícone)'],
+              ['Padding horizontal SM', '10px (reduz para 8px ao lado do ícone)'],
+              ['Padding horizontal Base', '12px (reduz para 10px ao lado do ícone)'],
+              ['Ícone XS', '16×16px — check_circle / close (MDI)'],
+              ['Ícone SM / Base', '20×20px — check_circle / close (MDI)'],
+              ['Gap ícone + label', '4px'],
+              ['Tipografia XS', '12px / 500 / 16px, letter-spacing 0.5px, Red Hat Display'],
+              ['Tipografia SM / Base', '14px / 500 / 20px, letter-spacing 0.1px, Red Hat Display'],
+              ['Variantes', 'Sem ícone, Com fechamento, Com ícone, Ícone + fechamento'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

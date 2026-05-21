@@ -422,7 +422,7 @@ export default function DrawerPage() {
         </div>
 
         {/* Usage guide */}
-        <div>
+        <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-4">Quando Usar</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -460,6 +460,35 @@ export default function DrawerPage() {
                   <p className="text-sm font-medium text-[#13283C]">{label}</p>
                   <p className="text-xs text-[#666666] mt-0.5">{desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Especificações Técnicas */}
+        <div>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+            {[
+              ['Largura do painel', '742px — fixa'],
+              ['Altura do painel', '1080px — fixa'],
+              ['Padding horizontal', '48px (esquerda e direita)'],
+              ['Padding superior', '16px'],
+              ['Padding inferior', '48px'],
+              ['Gap principal', '48px entre área de conteúdo e footer'],
+              ['Gap header → conteúdo', '24px'],
+              ['Área de conteúdo', 'border-radius 16px, fundo #F5F5F5, flex-1'],
+              ['Botão fechar', '40×40px, posição absoluta: left 4px, top 4px'],
+              ['Ícone arrow_forward_ios', '12×20px (container 24×24px)'],
+              ['Gap footer (botões)', '24px entre Cancel e Primary'],
+              ['Botões footer', 'Altura 40px — Cancel (outlined error) + Primary (filled blue)'],
+              ['Breadcrumb', '12px / 500 / 16px, letter-spacing 0.4px, cor --blue-200'],
+              ['Título', '16px / 700 / 24px, letter-spacing 0.15px, Red Hat Display Bold'],
+              ['Parágrafo', '14px / 400 / 20px, letter-spacing 0.25px, Red Hat Display Regular'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

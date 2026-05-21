@@ -2,7 +2,7 @@ import { Routes, Route, NavLink } from 'react-router-dom'
 import {
   Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation,
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
-  PanelLeft
+  PanelLeft, PanelRight,
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -20,23 +20,25 @@ import ChipsPage from './pages/Chips'
 import DateFieldPage from './pages/DateField'
 import CheckboxPage from './pages/Checkbox'
 import ServiceCenterPage from './pages/ServiceCenter'
+import DrawerPage from './pages/Drawer'
 
 const navItems = [
-  { to: '/',            label: 'Início',      Icon: House },
-  { to: '/colors',      label: 'Cores',       Icon: Palette },
-  { to: '/typography',  label: 'Typography',  Icon: Type },
-  { to: '/alerts',      label: 'Alerts',      Icon: CircleAlert },
-  { to: '/badges',      label: 'Badges',      Icon: Award },
-  { to: '/favicon',     label: 'Favicon',     Icon: Globe },
-  { to: '/action-bars', label: 'Action bars', Icon: MousePointerClick },
-  { to: '/breadcrumb',  label: 'Breadcrumb',  Icon: Navigation },
-  { to: '/icon-button', label: 'Icon Button', Icon: SquareMousePointer },
-  { to: '/buttons',     label: 'Buttons',     Icon: RectangleHorizontal },
-  { to: '/cards',       label: 'Cards',       Icon: LayoutTemplate },
-  { to: '/chips',       label: 'Chips',       Icon: Tag },
-  { to: '/date-field',  label: 'Date Field',  Icon: Calendar },
-  { to: '/checkbox',        label: 'Checkbox',        Icon: CheckSquare },
-  { to: '/service-center',  label: 'Service Center',  Icon: PanelLeft },
+  { to: '/',               label: 'Início',         Icon: House },
+  { to: '/colors',         label: 'Cores',          Icon: Palette },
+  { to: '/typography',     label: 'Typography',     Icon: Type },
+  { to: '/alerts',         label: 'Alerts',         Icon: CircleAlert },
+  { to: '/badges',         label: 'Badges',         Icon: Award },
+  { to: '/favicon',        label: 'Favicon',        Icon: Globe },
+  { to: '/action-bars',    label: 'Action bars',    Icon: MousePointerClick },
+  { to: '/breadcrumb',     label: 'Breadcrumb',     Icon: Navigation },
+  { to: '/icon-button',    label: 'Icon Button',    Icon: SquareMousePointer },
+  { to: '/buttons',        label: 'Buttons',        Icon: RectangleHorizontal },
+  { to: '/cards',          label: 'Cards',          Icon: LayoutTemplate },
+  { to: '/chips',          label: 'Chips',          Icon: Tag },
+  { to: '/date-field',     label: 'Date Field',     Icon: Calendar },
+  { to: '/checkbox',       label: 'Checkbox',       Icon: CheckSquare },
+  { to: '/drawer',         label: 'Drawer',         Icon: PanelRight },
+  { to: '/service-center', label: 'Service Center', Icon: PanelLeft },
 ]
 
 export default function App() {
@@ -80,21 +82,22 @@ export default function App() {
       {/* Main */}
       <main className="flex-1 overflow-y-auto bg-[#FAFAFA]">
         <Routes>
-          <Route path="/"           element={<HomePage />} />
-          <Route path="/colors"     element={<ColorsPage />} />
-          <Route path="/typography" element={<TypographyPage />} />
-          <Route path="/alerts"     element={<AlertsPage />} />
-          <Route path="/badges"     element={<BadgesPage />} />
-          <Route path="/favicon"      element={<FaviconPage />} />
-          <Route path="/action-bars" element={<ActionBarsPage />} />
-          <Route path="/breadcrumb"  element={<BreadcrumbPage />} />
-          <Route path="/icon-button" element={<IconButtonPage />} />
-          <Route path="/buttons"     element={<ButtonsPage />} />
-          <Route path="/cards"       element={<CardsPage />} />
-          <Route path="/chips"       element={<ChipsPage />} />
-          <Route path="/date-field"  element={<DateFieldPage />} />
-          <Route path="/checkbox"        element={<CheckboxPage />} />
-          <Route path="/service-center"  element={<ServiceCenterPage />} />
+          <Route path="/"               element={<HomePage />} />
+          <Route path="/colors"         element={<ColorsPage />} />
+          <Route path="/typography"     element={<TypographyPage />} />
+          <Route path="/alerts"         element={<AlertsPage />} />
+          <Route path="/badges"         element={<BadgesPage />} />
+          <Route path="/favicon"        element={<FaviconPage />} />
+          <Route path="/action-bars"    element={<ActionBarsPage />} />
+          <Route path="/breadcrumb"     element={<BreadcrumbPage />} />
+          <Route path="/icon-button"    element={<IconButtonPage />} />
+          <Route path="/buttons"        element={<ButtonsPage />} />
+          <Route path="/cards"          element={<CardsPage />} />
+          <Route path="/chips"          element={<ChipsPage />} />
+          <Route path="/date-field"     element={<DateFieldPage />} />
+          <Route path="/checkbox"       element={<CheckboxPage />} />
+          <Route path="/drawer"         element={<DrawerPage />} />
+          <Route path="/service-center" element={<ServiceCenterPage />} />
         </Routes>
       </main>
     </div>

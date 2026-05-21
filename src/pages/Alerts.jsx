@@ -266,7 +266,7 @@ export default function AlertsPage() {
         </div>
 
         {/* Usage guide */}
-        <div>
+        <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-4">Quando Usar</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
@@ -282,6 +282,28 @@ export default function AlertsPage() {
                   <p className="text-sm font-medium text-[#13283C]">{label}</p>
                   <p className="text-xs text-[#666666] mt-0.5">{desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Especificações Técnicas */}
+        <div>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+            {[
+              ['Estrutura', 'Ícone + texto + botão fechar (disposição horizontal, alinhamento central)'],
+              ['Border radius', '4px'],
+              ['Padding', '16px horizontal e vertical (px-4 py-4)'],
+              ['Ícone', '24×24px — Material Icons SVG, cor herdada da variante'],
+              ['Botão fechar', '20×20px — Material Icons SVG, cor herdada da variante'],
+              ['Tipografia', '14px, font-weight 500, fonte Red Hat Display'],
+              ['Tokens de cor', '5 pares: --alert-{variante} (texto) e --alert-{variante}-bg (fundo)'],
+              ['Variantes', 'Primary (blue), Secondary (grey), Success (green), Error (red), Warning (yellow)'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[180px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

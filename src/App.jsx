@@ -1,6 +1,6 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
 import {
-  Palette, House, Image, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation
+  Palette, House, Image, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation, SquareMousePointer, RectangleHorizontal, LayoutTemplate
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -11,16 +11,22 @@ import AlertsPage from './pages/Alerts'
 import FaviconPage from './pages/Favicon'
 import ActionBarsPage from './pages/ActionBars'
 import BreadcrumbPage from './pages/Breadcrumb'
+import IconButtonPage from './pages/IconButton'
+import ButtonsPage from './pages/Buttons'
+import CardsPage from './pages/Cards'
 
 const navItems = [
-  { to: '/',            label: 'Início',      Icon: House },
-  { to: '/colors',      label: 'Cores',       Icon: Palette },
-  { to: '/typography',  label: 'Typography',  Icon: Type },
-  { to: '/alerts',      label: 'Alerts',      Icon: CircleAlert },
-  { to: '/badges',      label: 'Badges',      Icon: Award },
-  { to: '/favicon',     label: 'Favicon',     Icon: Globe },
-  { to: '/action-bars', label: 'Action bars', Icon: MousePointerClick },
-  { to: '/breadcrumb',  label: 'Breadcrumb',  Icon: Navigation },
+  { to: '/',             label: 'Início',       Icon: House },
+  { to: '/colors',       label: 'Cores',        Icon: Palette },
+  { to: '/typography',   label: 'Typography',   Icon: Type },
+  { to: '/alerts',       label: 'Alerts',       Icon: CircleAlert },
+  { to: '/badges',       label: 'Badges',       Icon: Award },
+  { to: '/favicon',      label: 'Favicon',      Icon: Globe },
+  { to: '/action-bars',  label: 'Action bars',  Icon: MousePointerClick },
+  { to: '/breadcrumb',   label: 'Breadcrumb',   Icon: Navigation },
+  { to: '/icon-button',  label: 'Icon Button',  Icon: SquareMousePointer },
+  { to: '/buttons',      label: 'Buttons',      Icon: RectangleHorizontal },
+  { to: '/cards',        label: 'Cards',        Icon: LayoutTemplate },
 ]
 
 export default function App() {
@@ -71,7 +77,10 @@ export default function App() {
           <Route path="/badges"     element={<BadgesPage />} />
           <Route path="/favicon"      element={<FaviconPage />} />
           <Route path="/action-bars" element={<ActionBarsPage />} />
-          <Route path="/breadcrumb"  element={<BreadcrumbPage />} />
+          <Route path="/breadcrumb"   element={<BreadcrumbPage />} />
+          <Route path="/icon-button"  element={<IconButtonPage />} />
+          <Route path="/buttons"      element={<ButtonsPage />} />
+          <Route path="/cards"        element={<CardsPage />} />
         </Routes>
       </main>
     </div>

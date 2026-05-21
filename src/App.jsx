@@ -2,7 +2,7 @@ import { Routes, Route, NavLink } from 'react-router-dom'
 import {
   Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation,
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
-  PanelLeft, PanelRight, AppWindow,
+  PanelLeft, PanelRight, AlignJustify, AppWindow,
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -21,6 +21,7 @@ import DateFieldPage from './pages/DateField'
 import CheckboxPage from './pages/Checkbox'
 import ServiceCenterPage from './pages/ServiceCenter'
 import DrawerPage from './pages/Drawer'
+import MegaMenuPage from './pages/MegaMenu'
 import ModalPage from './pages/Modal'
 
 const navItems = [
@@ -41,6 +42,7 @@ const navItems = [
   { to: '/drawer',         label: 'Drawer',         Icon: PanelRight },
   { to: '/modal',          label: 'Modal',          Icon: AppWindow },
   { to: '/service-center', label: 'Service Center', Icon: PanelLeft },
+  { to: '/mega-menu',      label: 'Mega Menu',      Icon: AlignJustify },
 ]
 
 export default function App() {
@@ -101,6 +103,7 @@ export default function App() {
           <Route path="/drawer"         element={<DrawerPage />} />
           <Route path="/modal"          element={<ModalPage />} />
           <Route path="/service-center" element={<ServiceCenterPage />} />
+          <Route path="/mega-menu"      element={<MegaMenuPage />} />
         </Routes>
       </main>
     </div>

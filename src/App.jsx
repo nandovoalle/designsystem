@@ -2,7 +2,8 @@ import { Routes, Route, NavLink } from 'react-router-dom'
 import {
   Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation,
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
-  PanelLeft, PanelRight, AlignJustify, AppWindow,
+  PanelLeft, PanelRight, AlignJustify, AppWindow, List, Hash, MoreHorizontal, UserRound,
+  MessageSquare, LoaderCircle, Circle, ChevronsUpDown,
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -23,6 +24,14 @@ import ServiceCenterPage from './pages/ServiceCenter'
 import DrawerPage from './pages/Drawer'
 import MegaMenuPage from './pages/MegaMenu'
 import ModalPage from './pages/Modal'
+import MenuPage from './pages/Menu'
+import NumberInputPage from './pages/NumberInput'
+import PaginationPage from './pages/Pagination'
+import PersonPage from './pages/Person'
+import PopoverPage from './pages/Popover'
+import ProgressPage from './pages/Progress'
+import RadioButtonsPage from './pages/RadioButtons'
+import SelectPage from './pages/Select'
 
 const navItems = [
   { to: '/',               label: 'Início',         Icon: House },
@@ -43,6 +52,14 @@ const navItems = [
   { to: '/modal',          label: 'Modal',          Icon: AppWindow },
   { to: '/service-center', label: 'Service Center', Icon: PanelLeft },
   { to: '/mega-menu',      label: 'Mega Menu',      Icon: AlignJustify },
+  { to: '/menu',           label: 'Menu',           Icon: List         },
+  { to: '/number-input',   label: 'Number Input',   Icon: Hash         },
+  { to: '/pagination',     label: 'Pagination',     Icon: MoreHorizontal },
+  { to: '/person',         label: 'Person',         Icon: UserRound },
+  { to: '/popover',        label: 'Popover',        Icon: MessageSquare },
+  { to: '/progress',       label: 'Progress',       Icon: LoaderCircle },
+  { to: '/radio-buttons',  label: 'Radio Buttons',  Icon: Circle },
+  { to: '/select',         label: 'Select',         Icon: ChevronsUpDown },
 ]
 
 export default function App() {
@@ -104,6 +121,14 @@ export default function App() {
           <Route path="/modal"          element={<ModalPage />} />
           <Route path="/service-center" element={<ServiceCenterPage />} />
           <Route path="/mega-menu"      element={<MegaMenuPage />} />
+          <Route path="/menu"           element={<MenuPage />} />
+          <Route path="/number-input"   element={<NumberInputPage />} />
+          <Route path="/pagination"     element={<PaginationPage />} />
+          <Route path="/person"         element={<PersonPage />} />
+          <Route path="/popover"        element={<PopoverPage />} />
+          <Route path="/progress"       element={<ProgressPage />} />
+          <Route path="/radio-buttons"  element={<RadioButtonsPage />} />
+          <Route path="/select"         element={<SelectPage />} />
         </Routes>
       </main>
     </div>

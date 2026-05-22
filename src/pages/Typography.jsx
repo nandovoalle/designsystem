@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { PageHeader } from '../components/PageHeader'
 
 const PREVIEW = 'The quick brown fox jumps over the lazy dog'
@@ -40,13 +41,21 @@ const SCALE = [
   },
 ]
 
-function SpecimenCard({ name, size, lh, weight, weightName }) {
+function SpecimenCard({ name, size, lh, weight, weightName, isDark }) {
   const isDisplay = name.startsWith('Headline') || name.startsWith('Title')
   return (
-    <div className="rounded-[10px] border border-black/10 bg-white overflow-hidden">
-      <div className="flex items-center justify-between px-5 py-3 border-b border-[#E9EFF2]">
-        <span className="text-sm font-medium text-[#13283C]">{name}</span>
-        <span className="text-xs text-[#9E9E9E]">
+    <div
+      className={`rounded-[10px] border overflow-hidden ${
+        isDark ? 'bg-[#32353A] border-[#4B4E52]' : 'bg-white border-black/10'
+      }`}
+    >
+      <div
+        className={`flex items-center justify-between px-5 py-3 border-b ${
+          isDark ? 'border-[#4B4E52]' : 'border-[#E9EFF2]'
+        }`}
+      >
+        <span className={`text-sm font-medium ${isDark ? 'text-white' : 'text-[#13283C]'}`}>{name}</span>
+        <span className={`text-xs ${isDark ? 'text-[#808285]' : 'text-[#9E9E9E]'}`}>
           {size}/{lh} · {weightName} · 0
         </span>
       </div>
@@ -57,20 +66,28 @@ function SpecimenCard({ name, size, lh, weight, weightName }) {
             lineHeight: `${lh}px`,
             fontWeight: weight,
             fontFamily: isDisplay ? '"Red Hat Display", sans-serif' : undefined,
-            color: '#13283C',
+            color: isDark ? '#FFFFFF' : '#13283C',
           }}
         >
           {PREVIEW}
         </p>
       </div>
-      <div className="px-5 py-3 border-t border-[#E9EFF2] bg-[#FAFAFA] flex items-center gap-4 flex-wrap">
-        <span className="text-xs text-[#666666]">
+      <div
+        className={`px-5 py-3 border-t flex items-center gap-4 flex-wrap ${
+          isDark ? 'border-[#4B4E52] bg-[#2A2D31]' : 'border-[#E9EFF2] bg-[#FAFAFA]'
+        }`}
+      >
+        <span className={`text-xs ${isDark ? 'text-[#C1C2C4]' : 'text-[#666666]'}`}>
           Font:{' '}
-          <strong className="text-[#13283C]">
+          <strong className={isDark ? 'text-white' : 'text-[#13283C]'}>
             {isDisplay ? 'Red Hat Display' : 'System UI'}
           </strong>
         </span>
-        <code className="text-xs bg-[#F0F0F0] text-[#13283C] px-2 py-1 rounded font-mono">
+        <code
+          className={`text-xs px-2 py-1 rounded font-mono ${
+            isDark ? 'bg-[#1D2024] text-[#C1C2C4]' : 'bg-[#F0F0F0] text-[#13283C]'
+          }`}
+        >
           {`text-[${size}px] leading-[${lh}px] font-${
             weight === 400 ? 'normal' : weight === 500 ? 'medium' : weight === 600 ? 'semibold' : 'bold'
           }`}
@@ -80,26 +97,37 @@ function SpecimenCard({ name, size, lh, weight, weightName }) {
   )
 }
 
-export default function TypographyPage() {
+function Section({ group, desc, items, isDark }) {
   return (
-    <div className="p-[68px]">
+    <div>
+      <h2 className={`text-xl font-medium mb-1 ${isDark ? 'text-white' : 'text-[#13283C]'}`}>{group}</h2>
+      <p className={`text-sm mb-6 ${isDark ? 'text-[#C1C2C4]' : 'text-[#666666]'}`}>{desc}</p>
+      <div className="space-y-4">
+        {items.map((item) => (
+          <SpecimenCard key={item.name} {...item} isDark={isDark} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function TypographyPage() {
+  const [theme, setTheme] = useState('light')
+  const isDark = theme === 'dark'
+
+  return (
+    <div className={`p-[68px] min-h-full transition-colors ${isDark ? 'bg-[#1D2024]' : ''}`}>
       <div className="container max-w-6xl mx-auto">
         <PageHeader
           title="Typography"
           description="Sistema tipográfico completo usando Red Hat Display. Todos os estilos são otimizados para legibilidade e hierarquia visual."
           showThemeToggle
+          theme={theme}
+          onThemeChange={setTheme}
         />
         <div className="space-y-12">
-          {SCALE.map(({ group, desc, items }) => (
-            <div key={group}>
-              <h2 className="text-xl font-medium text-[#13283C] mb-1">{group}</h2>
-              <p className="text-sm text-[#666666] mb-6">{desc}</p>
-              <div className="space-y-4">
-                {items.map((item) => (
-                  <SpecimenCard key={item.name} {...item} />
-                ))}
-              </div>
-            </div>
+          {SCALE.map((section) => (
+            <Section key={section.group} {...section} isDark={isDark} />
           ))}
         </div>
       </div>

@@ -34,29 +34,29 @@ function FaviconWithBadge({ count }) {
       className="inline-grid relative shrink-0 place-items-start"
       style={{ gridTemplateColumns: 'max-content', gridTemplateRows: 'max-content' }}
     >
-      {/* Favicon 12×12px */}
+      {/* Favicon 16×16px */}
       <div
-        className="col-start-1 row-start-1 mt-[2px] size-[12px] flex items-center justify-center rounded-[1px] shrink-0"
+        className="col-start-1 row-start-1 mt-[2px] size-[16px] flex items-center justify-center rounded-[2px] shrink-0"
         style={{ backgroundColor: '#13283C' }}
       >
-        <svg width={6} height={6} viewBox="0 0 24 24" fill="none">
+        <svg width={8} height={8} viewBox="0 0 24 24" fill="none">
           <rect x="5" y="3" width="3" height="18" rx="1" fill="white" />
           <rect x="16" y="3" width="3" height="18" rx="1" fill="white" />
         </svg>
       </div>
-      {/* Badge background 10×10px */}
+      {/* Badge background 14×14px */}
       <div
-        className="col-start-1 row-start-1 mt-0 size-[10px] rounded-[1px]"
-        style={{ backgroundColor: '#E9786B', marginLeft: '4px' }}
+        className="col-start-1 row-start-1 mt-0 size-[14px] rounded-[2px]"
+        style={{ backgroundColor: '#E9786B', marginLeft: '10px' }}
       />
       {/* Badge text */}
       <div
         className="col-start-1 row-start-1 mt-[2px] flex items-center justify-center text-white font-bold text-center"
         style={{
-          marginLeft: isOne ? '6px' : '5px',
-          width: isOne ? '6px' : '8px',
-          height: '6px',
-          fontSize: '6px',
+          marginLeft: isOne ? '13px' : '12px',
+          width: isOne ? '8px' : '10px',
+          height: '10px',
+          fontSize: '8px',
           fontFamily: '"Red Hat Display", sans-serif',
           lineHeight: '16px',
         }}
@@ -114,7 +114,7 @@ export default function FaviconPage() {
               ['Tamanhos recomendados', '16×16, 32×32, 48×48, 64×64, 128×128, 256×256 pixels'],
               ['Variante Light', 'Fundo #13283C (blue-800) com símbolo branco'],
               ['Variante Dark', 'Fundo branco com símbolo #13283C'],
-              ['Badge de notificação', 'Cor #E9786B (--color-error), fonte Red Hat Display Bold 6px, 10×10px'],
+              ['Badge de notificação', 'Cor #E9786B (--color-error), fonte Red Hat Display Bold 8px, 14×14px'],
               ['Border radius', '2px — mantém consistência com o design system'],
             ].map(([label, value]) => (
               <div key={label} className="flex gap-2">

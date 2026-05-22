@@ -2,21 +2,53 @@ import { PageHeader } from '../components/PageHeader'
 
 /* ─────────────────────────── SVG Icons ─────────────────────────── */
 
-/* close — vetor interno 14 × 14 px dentro de wrapper 24 × 24 (inset 20.83% = 5 px cada lado) */
+/* close — vetor 20 × 20 px (SVG fixo; não usar Material Symbols — opsz global força ~24px) */
 function CloseIcon() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--text-disabled)" style={{ flexShrink: 0 }}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={20}
+      height={20}
+      viewBox="0 0 24 24"
+      fill="var(--text-disabled)"
+      aria-hidden
+      style={{
+        display: 'block',
+        flexShrink: 0,
+        width: 20,
+        height: 20,
+        minWidth: 20,
+        minHeight: 20,
+        maxWidth: 20,
+        maxHeight: 20,
+      }}
+    >
       <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
     </svg>
   )
 }
 
-/* add_circle — vetor interno 55 × 55 px */
+/* add_circle — 55 × 55 px, weight 300 */
 function AddCircleIcon() {
   return (
-    <svg width="55" height="55" viewBox="0 0 24 24" fill="var(--blue-200)" style={{ flexShrink: 0 }}>
-      <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-    </svg>
+    <span
+      className="material-symbols-outlined"
+      aria-hidden
+      style={{
+        fontSize: 55,
+        width: 55,
+        height: 55,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: 'var(--blue-200)',
+        fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 48",
+        flexShrink: 0,
+        lineHeight: 1,
+      }}
+    >
+      add_circle
+    </span>
   )
 }
 
@@ -96,7 +128,16 @@ function ModalHeader({ title }) {
               borderRadius: 4,
             }}
           >
-            <div style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div
+              style={{
+                width: 20,
+                height: 20,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+              }}
+            >
               <CloseIcon />
             </div>
           </div>
@@ -424,7 +465,7 @@ export default function ModalPage() {
               { label: 'Título',               desc: 'Medium 500 / 16 px / 24 px', sub: 'Red Hat Display, ls 0.15 px' },
               { label: 'Botão fechar',         desc: '40 × 40 px',              sub: 'Container do icon button' },
               { label: 'State layer fechar',   desc: 'padding 8 px',            sub: 'Border-radius 4 px' },
-              { label: 'Ícone close (X)',      desc: '14 × 14 px',              sub: 'Vetor interno em wrapper 24 × 24' },
+              { label: 'Ícone close (X)',      desc: '20 × 20 px',              sub: 'Vetor SVG fixo no botão fechar' },
             ].map(({ label, desc, sub }) => (
               <div key={`${label}-${desc}`} className="bg-white rounded-[14px] border border-black/10 p-5">
                 <p className="text-xs font-medium text-[#9E9E9E] uppercase tracking-wide mb-1">{label}</p>
@@ -445,7 +486,7 @@ export default function ModalPage() {
               { label: 'Body — gap',            desc: '24 px',                   sub: 'Entre conteúdo e footer' },
               { label: 'Área de conteúdo — gap', desc: '16 px',                  sub: 'Entre ícone e textos' },
               { label: 'Alinhamento conteúdo',  desc: 'center / center',         sub: 'Horizontal e vertical centralizados' },
-              { label: 'Ícone add_circle',      desc: '55 × 55 px',              sub: 'Vetor interno (não container)' },
+              { label: 'Ícone add_circle',      desc: '55 × 55 px',              sub: 'Material Symbols Outlined, weight 300' },
               { label: 'Ícone lixo (exclusão)', desc: '65 × 65 px',              sub: 'Vetor interno (não container)' },
               { label: 'Texto corpo',           desc: 'Regular 400 / 16 px / 24 px', sub: 'Red Hat Display, ls 0.5 px, center' },
               { label: 'Texto negrito',         desc: 'Bold 700 / 16 px / 24 px', sub: 'Mesmas dimensões, weight 700' },

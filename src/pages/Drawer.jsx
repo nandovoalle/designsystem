@@ -146,9 +146,9 @@ function MenuPreview() {
         flexDirection: 'column',
       }}
     >
-      {MENU_ITEMS.map(({ icon, size, label }) => (
+      {MENU_ITEMS.map(({ path, size, label }) => (
         <div
-          key={icon}
+          key={label}
           style={{ height: 40, display: 'flex', alignItems: 'center', width: '100%' }}
         >
           <div
@@ -161,7 +161,7 @@ function MenuPreview() {
               width: '100%',
             }}
           >
-            <MatIcon name={icon} size={size} />
+            <MenuIcon path={path} size={size} />
             <span
               style={{
                 fontFamily: '"Red Hat Display", sans-serif',

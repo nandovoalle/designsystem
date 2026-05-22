@@ -18,6 +18,16 @@ export default {
       borderRadius: {
         card: '14px',
       },
+      keyframes: {
+        'shine-pulse': {
+          '0%': { 'background-position': '0% 0%' },
+          '50%': { 'background-position': '100% 100%' },
+          to: { 'background-position': '0% 0%' },
+        },
+      },
+      animation: {
+        'shine-pulse': 'shine-pulse 14s infinite linear',
+      },
     },
   },
   plugins: [],

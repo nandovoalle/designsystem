@@ -54,6 +54,7 @@
     --alert-green: #155724;      --alert-green-bg: #D4EDDA;
     --alert-red: #721c24;        --alert-red-bg: #F8D7DA;
     --alert-yellow: #856404;     --alert-yellow-bg: #FFF3CD;
+    --alert-orange: #7C3A00;     --alert-orange-bg: #FEE8D6;
     /* Radius */
     --radius: 0.625rem;
   }
@@ -71,6 +72,7 @@
     --alert-green: #9ED49D;      --alert-green-bg: #48544D;
     --alert-red: #FFB4AB;        --alert-red-bg: #5B4E50;
     --alert-yellow: #E9C16C;     --alert-yellow-bg: #575144;
+    --alert-orange: #FFBA85;     --alert-orange-bg: #52341C;
   }
 
   * { box-sizing: border-box; }

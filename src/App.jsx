@@ -1,16 +1,17 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
 import {
-  Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation,
+  Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation, Ruler,
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
   PanelLeft, PanelRight, AlignJustify, AppWindow, List, Hash, MoreHorizontal, UserRound,
   MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers, ToggleRight,
-  Table2, ListOrdered, BarChart2,
+  Table2, ListOrdered, BarChart2, Flag,
 } from 'lucide-react'
 
 import { disableTrail } from './components/ui/hero-designali'
 import HomePage from './pages/Home'
 import ColorsPage from './pages/Colors'
 import TypographyPage from './pages/Typography'
+import SpacingPage from './pages/Spacing'
 import BadgesPage from './pages/Badges'
 import AlertsPage from './pages/Alerts'
 import FaviconPage from './pages/Favicon'
@@ -42,11 +43,15 @@ import TablesPage from './pages/Tables'
 import StepsPage from './pages/Steps'
 import CalendarPage from './pages/Calendar'
 import ChartPage from './pages/Chart'
+import PriorityPage from './pages/Priority'
 
 const navItems = [
   { to: '/',               label: 'Início',         Icon: House },
+  { divider: true,         label: 'Tokens' },
   { to: '/colors',         label: 'Cores',          Icon: Palette },
   { to: '/typography',     label: 'Typography',     Icon: Type },
+  { to: '/spacing',        label: 'Spacing',        Icon: Ruler },
+  { divider: true,         label: 'Components' },
   { to: '/alerts',         label: 'Alerts',         Icon: CircleAlert },
   { to: '/badges',         label: 'Badges',         Icon: Award },
   { to: '/favicon',        label: 'Favicon',        Icon: Globe },
@@ -66,6 +71,7 @@ const navItems = [
   { to: '/menu',           label: 'Menu',           Icon: List },
   { to: '/number-input',   label: 'Number Input',   Icon: Hash },
   { to: '/pagination',     label: 'Pagination',     Icon: MoreHorizontal },
+  { to: '/priority',       label: 'Priority',       Icon: Flag },
   { to: '/person',         label: 'Person',         Icon: UserRound },
   { to: '/popover',        label: 'Popover',        Icon: MessageSquare },
   { to: '/chart',          label: 'Charts',         Icon: BarChart2 },
@@ -109,7 +115,18 @@ export default function App() {
 
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-          {navItems.map(({ to, label, Icon }) => (
+          {navItems.map((item, i) => {
+            if (item.divider) {
+              return (
+                <div key={`divider-${i}`} className="pt-4 pb-1 px-3">
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9E9E9E]">
+                    {item.label}
+                  </span>
+                </div>
+              )
+            }
+            const { to, label, Icon } = item
+            return (
             <NavLink
               key={to}
               to={to}
@@ -125,7 +142,8 @@ export default function App() {
               <Icon size={20} />
               <span>{label}</span>
             </NavLink>
-          ))}
+            )
+          })}
         </nav>
 
         {/* Footer */}
@@ -140,6 +158,7 @@ export default function App() {
           <Route path="/"               element={<HomePage />} />
           <Route path="/colors"         element={<ColorsPage />} />
           <Route path="/typography"     element={<TypographyPage />} />
+          <Route path="/spacing"        element={<SpacingPage />} />
           <Route path="/alerts"         element={<AlertsPage />} />
           <Route path="/badges"         element={<BadgesPage />} />
           <Route path="/favicon"        element={<FaviconPage />} />
@@ -170,6 +189,7 @@ export default function App() {
           <Route path="/steps"          element={<StepsPage />} />
           <Route path="/calendar"       element={<CalendarPage />} />
           <Route path="/chart"          element={<ChartPage />} />
+          <Route path="/priority"       element={<PriorityPage />} />
           <Route path="/tooltip"        element={<TooltipPage />} />
         </Routes>
       </main>

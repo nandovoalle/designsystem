@@ -4,7 +4,7 @@ import {
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
   PanelLeft, PanelRight, AlignJustify, AppWindow, List, Hash, MoreHorizontal, UserRound,
   MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers, ToggleRight,
-  Table2, ListOrdered, BarChart2, Flag, Filter, Files,
+  Table2, ListOrdered, BarChart2, Flag, Filter, Files, LayoutGrid, Timer,
 } from 'lucide-react'
 
 import { disableTrail } from './components/ui/hero-designali'
@@ -12,6 +12,10 @@ import HomePage from './pages/Home'
 import ColorsPage from './pages/Colors'
 import TypographyPage from './pages/Typography'
 import SpacingPage from './pages/Spacing'
+import RadiusPage from './pages/Radius'
+import ElevationPage from './pages/Elevation'
+import GridPage from './pages/Grid'
+import MotionPage from './pages/Motion'
 import BadgesPage from './pages/Badges'
 import AlertsPage from './pages/Alerts'
 import FaviconPage from './pages/Favicon'
@@ -53,6 +57,10 @@ const navItems = [
   { to: '/colors',         label: 'Cores',          Icon: Palette },
   { to: '/typography',     label: 'Typography',     Icon: Type },
   { to: '/spacing',        label: 'Spacing',        Icon: Ruler },
+  { to: '/radius',         label: 'Radius',         Icon: Ruler },
+  { to: '/elevation',      label: 'Elevation',      Icon: Layers },
+  { to: '/grid',           label: 'Grid',           Icon: LayoutGrid },
+  { to: '/motion',         label: 'Motion',         Icon: Timer },
   { divider: true,         label: 'Components' },
   { to: '/alerts',         label: 'Alerts',         Icon: CircleAlert },
   { to: '/badges',         label: 'Badges',         Icon: Award },
@@ -163,6 +171,10 @@ export default function App() {
           <Route path="/colors"         element={<ColorsPage />} />
           <Route path="/typography"     element={<TypographyPage />} />
           <Route path="/spacing"        element={<SpacingPage />} />
+          <Route path="/radius"         element={<RadiusPage />} />
+          <Route path="/elevation"      element={<ElevationPage />} />
+          <Route path="/grid"           element={<GridPage />} />
+          <Route path="/motion"         element={<MotionPage />} />
           <Route path="/alerts"         element={<AlertsPage />} />
           <Route path="/badges"         element={<BadgesPage />} />
           <Route path="/favicon"        element={<FaviconPage />} />

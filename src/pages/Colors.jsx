@@ -145,7 +145,7 @@ const SECTIONS_DARK = [
       { name: 'green',    hex: '#4BAF50', token: '--state-green' },
       { name: 'green-2',  hex: '#67D18A', token: '--state-green-2' },
       { name: 'yellow',   hex: '#E9C16C', token: '--state-yellow' },
-      { name: 'orange',   hex: '#FF9E5F', token: '--state-orange' },
+      { name: 'orange',   hex: '#FFBA85', token: '--state-orange' },
       { name: 'red',      hex: '#E9786B', token: '--state-red' },
       { name: 'purple',   hex: '#8080EC', token: '--state-purple' },
       { name: 'staging',  hex: '#F6BD67', token: '--state-staging' },

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import logoElleven from '@/assets/logo-elleven.svg'
 import { Link } from 'react-router-dom'
 import { Plus } from 'lucide-react'
-import { renderCanvas, TypeWriter } from '@/components/ui/hero-designali'
+import { renderCanvas, TypeWriter, enableTrail, disableTrail } from '@/components/ui/hero-designali'
 import { Button } from '@/components/ui/button'
 
 const dsTopics = [
@@ -44,7 +44,7 @@ export default function HomePage() {
 
           {/* Title block */}
           <div className="mx-auto max-w-4xl w-full">
-            <div className="relative mx-auto p-5">
+            <div className="relative mx-auto p-5" onMouseEnter={enableTrail}>
               <Plus strokeWidth={1} className="absolute left-0 top-0 h-10 w-10 text-[#304A64]" />
               <Plus strokeWidth={1} className="absolute bottom-0 left-0 h-10 w-10 text-[#304A64]" />
               <Plus strokeWidth={1} className="absolute right-0 top-0 h-10 w-10 text-[#304A64]" />

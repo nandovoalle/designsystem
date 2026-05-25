@@ -38,6 +38,7 @@ var ctx
 var f
 var pos = {}
 var lines = []
+var trailEnabled = true
 var E = {
   debug: true,
   friction: 0.5,
@@ -146,17 +147,27 @@ function render() {
   if (ctx.running) {
     ctx.globalCompositeOperation = 'source-over'
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    ctx.globalCompositeOperation = 'lighter'
-    ctx.strokeStyle = 'hsla(' + Math.round(f.update()) + ',100%,50%,0.025)'
-    ctx.lineWidth = 10
-    for (var i = 0; i < E.trails; i++) {
-      var line = lines[i]
-      line.update()
-      line.draw()
+    if (trailEnabled) {
+      ctx.globalCompositeOperation = 'lighter'
+      ctx.strokeStyle = 'hsla(' + Math.round(f.update()) + ',100%,50%,0.025)'
+      ctx.lineWidth = 10
+      for (var i = 0; i < E.trails; i++) {
+        var line = lines[i]
+        line.update()
+        line.draw()
+      }
     }
     ctx.frame++
     window.requestAnimationFrame(render)
   }
+}
+
+export function enableTrail() {
+  trailEnabled = true
+}
+
+export function disableTrail() {
+  trailEnabled = false
 }
 
 function resizeCanvas() {

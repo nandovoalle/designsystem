@@ -3,9 +3,11 @@ import {
   Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation,
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
   PanelLeft, PanelRight, AlignJustify, AppWindow, List, Hash, MoreHorizontal, UserRound,
-  MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers,
+  MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers, ListOrdered,
+  BarChart2,
 } from 'lucide-react'
 
+import { disableTrail } from './components/ui/hero-designali'
 import HomePage from './pages/Home'
 import ColorsPage from './pages/Colors'
 import TypographyPage from './pages/Typography'
@@ -35,6 +37,9 @@ import SelectPage from './pages/Select'
 import TooltipPage from './pages/Tooltip'
 import TextFieldPage from './pages/TextField'
 import TabsPage from './pages/Tabs'
+import StepsPage from './pages/Steps'
+import CalendarPage from './pages/Calendar'
+import ChartPage from './pages/Chart'
 
 const navItems = [
   { to: '/',               label: 'Início',         Icon: House },
@@ -50,6 +55,7 @@ const navItems = [
   { to: '/cards',          label: 'Cards',          Icon: LayoutTemplate },
   { to: '/chips',          label: 'Chips',          Icon: Tag },
   { to: '/date-field',     label: 'Date Field',     Icon: Calendar },
+  { to: '/calendar',       label: 'Calendar',       Icon: Calendar },
   { to: '/checkbox',       label: 'Checkbox',       Icon: CheckSquare },
   { to: '/drawer',         label: 'Drawer',         Icon: PanelRight },
   { to: '/modal',          label: 'Modal',          Icon: AppWindow },
@@ -60,11 +66,13 @@ const navItems = [
   { to: '/pagination',     label: 'Pagination',     Icon: MoreHorizontal },
   { to: '/person',         label: 'Person',         Icon: UserRound },
   { to: '/popover',        label: 'Popover',        Icon: MessageSquare },
+  { to: '/chart',          label: 'Charts',         Icon: BarChart2 },
   { to: '/progress',       label: 'Progress',       Icon: LoaderCircle },
   { to: '/radio-buttons',  label: 'Radio Buttons',  Icon: Circle },
   { to: '/select',         label: 'Select',         Icon: ChevronsUpDown },
   { to: '/tabs',           label: 'Tabs',           Icon: Layers },
   { to: '/text-field',     label: 'Text Field',     Icon: TextCursorInput },
+  { to: '/steps',          label: 'Steps',          Icon: ListOrdered },
   { to: '/tooltip',        label: 'Tooltip',        Icon: MessageSquare },
 ]
 
@@ -72,7 +80,10 @@ export default function App() {
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-white">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-[#E9EFF2] bg-white flex flex-col flex-shrink-0">
+      <aside
+        className="w-64 border-r border-[#E9EFF2] bg-white flex flex-col flex-shrink-0"
+        onMouseEnter={disableTrail}
+      >
         {/* Header */}
         <div className="p-6 flex items-center gap-2">
           <svg width="143" height="58" viewBox="0 0 143 58" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -150,6 +161,9 @@ export default function App() {
           <Route path="/select"         element={<SelectPage />} />
           <Route path="/tabs"           element={<TabsPage />} />
           <Route path="/text-field"     element={<TextFieldPage />} />
+          <Route path="/steps"          element={<StepsPage />} />
+          <Route path="/calendar"       element={<CalendarPage />} />
+          <Route path="/chart"          element={<ChartPage />} />
           <Route path="/tooltip"        element={<TooltipPage />} />
         </Routes>
       </main>

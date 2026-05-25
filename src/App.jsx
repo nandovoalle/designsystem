@@ -4,7 +4,7 @@ import {
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
   PanelLeft, PanelRight, AlignJustify, AppWindow, List, Hash, MoreHorizontal, UserRound,
   MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers, ToggleRight,
-  Table2, ListOrdered, BarChart2, Flag,
+  Table2, ListOrdered, BarChart2, Flag, Filter, Files,
 } from 'lucide-react'
 
 import { disableTrail } from './components/ui/hero-designali'
@@ -44,6 +44,8 @@ import StepsPage from './pages/Steps'
 import CalendarPage from './pages/Calendar'
 import ChartPage from './pages/Chart'
 import PriorityPage from './pages/Priority'
+import FilterPage from './pages/Filter'
+import IconFilesPage from './pages/IconFiles'
 
 const navItems = [
   { to: '/',               label: 'Início',         Icon: House },
@@ -55,6 +57,7 @@ const navItems = [
   { to: '/alerts',         label: 'Alerts',         Icon: CircleAlert },
   { to: '/badges',         label: 'Badges',         Icon: Award },
   { to: '/favicon',        label: 'Favicon',        Icon: Globe },
+  { to: '/icon-files',    label: 'Icon Files',     Icon: Files },
   { to: '/action-bars',    label: 'Action bars',    Icon: MousePointerClick },
   { to: '/breadcrumb',     label: 'Breadcrumb',     Icon: Navigation },
   { to: '/icon-button',    label: 'Icon Button',    Icon: SquareMousePointer },
@@ -65,6 +68,7 @@ const navItems = [
   { to: '/calendar',       label: 'Calendar',       Icon: Calendar },
   { to: '/checkbox',       label: 'Checkbox',       Icon: CheckSquare },
   { to: '/drawer',         label: 'Drawer',         Icon: PanelRight },
+  { to: '/filter',         label: 'Filter',         Icon: Filter },
   { to: '/modal',          label: 'Modal',          Icon: AppWindow },
   { to: '/service-center', label: 'Service Center', Icon: PanelLeft },
   { to: '/mega-menu',      label: 'Mega Menu',      Icon: AlignJustify },
@@ -162,6 +166,7 @@ export default function App() {
           <Route path="/alerts"         element={<AlertsPage />} />
           <Route path="/badges"         element={<BadgesPage />} />
           <Route path="/favicon"        element={<FaviconPage />} />
+          <Route path="/icon-files"     element={<IconFilesPage />} />
           <Route path="/action-bars"    element={<ActionBarsPage />} />
           <Route path="/breadcrumb"     element={<BreadcrumbPage />} />
           <Route path="/icon-button"    element={<IconButtonPage />} />
@@ -171,6 +176,7 @@ export default function App() {
           <Route path="/date-field"     element={<DateFieldPage />} />
           <Route path="/checkbox"       element={<CheckboxPage />} />
           <Route path="/drawer"         element={<DrawerPage />} />
+          <Route path="/filter"         element={<FilterPage />} />
           <Route path="/modal"          element={<ModalPage />} />
           <Route path="/service-center" element={<ServiceCenterPage />} />
           <Route path="/mega-menu"      element={<MegaMenuPage />} />

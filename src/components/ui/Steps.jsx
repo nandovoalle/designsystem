@@ -124,7 +124,7 @@ export function Steps({ state = 'default', label = 'Label', number = '1', showCh
       </div>
 
       {/* Chevron separator */}
-      {showChevron && <ChevronRight size={24} color={chevronColor} strokeWidth={1.5} />}
+      {showChevron && <ChevronRight width={19.7} height={32} color={chevronColor} strokeWidth={1.5} />}
     </div>
   )
 }

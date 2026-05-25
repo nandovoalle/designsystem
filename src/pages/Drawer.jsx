@@ -5,7 +5,7 @@ import { PageHeader } from '../components/PageHeader'
 
 function ArrowForwardIosIcon() {
   return (
-    <svg width={12} height={20} viewBox="6 2 12 20" fill="var(--text-primary)" style={{ flexShrink: 0 }}>
+    <svg width={12} height={20} viewBox="6 2 12 20" fill="#9CB1C8" style={{ flexShrink: 0 }}>
       <path d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z" />
     </svg>
   )
@@ -14,7 +14,7 @@ function ArrowForwardIosIcon() {
 /* more_vert: 3 circles → visual span 4 px wide × 16 px tall */
 function MoreVertIcon() {
   return (
-    <svg width={24} height={24} viewBox="0 0 24 24" fill="var(--text-primary)" style={{ flexShrink: 0 }}>
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="#9CB1C8" style={{ flexShrink: 0 }}>
       <circle cx="12" cy="6"  r="2" />
       <circle cx="12" cy="12" r="2" />
       <circle cx="12" cy="18" r="2" />
@@ -22,8 +22,16 @@ function MoreVertIcon() {
   )
 }
 
+function TopoIcon() {
+  return (
+    <svg width={18} height={18} viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0 }}>
+      <path d="M2 18C1.45 18 0.979167 17.8042 0.5875 17.4125C0.195833 17.0208 0 16.55 0 16V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H16C16.55 0 17.0208 0.195833 17.4125 0.5875C17.8042 0.979167 18 1.45 18 2V16C18 16.55 17.8042 17.0208 17.4125 17.4125C17.0208 17.8042 16.55 18 16 18H2ZM2 13V16H16V13H2ZM2 11H16V2H2V11Z" fill="#9CB1C8" />
+    </svg>
+  )
+}
+
 /* SVG icon helper — renders Material Symbols SVG path at specified size */
-function MenuIcon({ path, size, color = 'var(--text-primary)' }) {
+function MenuIcon({ path, size, color = '#9CB1C8' }) {
   return (
     <div style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
       <svg
@@ -51,8 +59,8 @@ const MENU_ITEMS = [
     size: 24, label: 'Direita',
   },
   {
-    path: 'M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-640v120h560v-120H200Zm0 200h560v360H200v-360Zm0-80v-120 120Z',
-    size: 24, label: 'Topo',
+    icon: TopoIcon,
+    size: 18, label: 'Topo',
   },
   {
     path: 'M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-200v120h560v-120H200Zm0-80h560v-360H200v360Zm0 80v120-120Z',
@@ -60,11 +68,11 @@ const MENU_ITEMS = [
   },
   {
     path: 'M200-200v-240h80v160h160v80H200Zm480-320v-160H520v-80h240v240h-80Z',
-    size: 14, label: 'Expandir',
+    size: 24, label: 'Expandir',
   },
   {
     path: 'M440-440v240h-80v-160H200v-80h240Zm160-320v160h160v80H520v-240h80Z',
-    size: 14, label: 'Retrair',
+    size: 24, label: 'Retrair',
   },
   {
     path: 'M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z',
@@ -89,7 +97,7 @@ function MenuDropdown() {
       }}
       onClick={(e) => e.stopPropagation()}
     >
-      {MENU_ITEMS.map(({ path, size, label }) => (
+      {MENU_ITEMS.map(({ path, size, label, icon: Icon }) => (
         <div
           key={label}
           style={{
@@ -109,7 +117,10 @@ function MenuDropdown() {
               width: '100%',
             }}
           >
-            <MenuIcon path={path} size={size} />
+            {Icon
+              ? <div style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><Icon /></div>
+              : <MenuIcon path={path} size={size} />
+            }
             <span
               style={{
                 fontFamily: '"Red Hat Display", sans-serif',
@@ -146,7 +157,7 @@ function MenuPreview() {
         flexDirection: 'column',
       }}
     >
-      {MENU_ITEMS.map(({ path, size, label }) => (
+      {MENU_ITEMS.map(({ path, size, label, icon: Icon }) => (
         <div
           key={label}
           style={{ height: 40, display: 'flex', alignItems: 'center', width: '100%' }}
@@ -161,7 +172,10 @@ function MenuPreview() {
               width: '100%',
             }}
           >
-            <MenuIcon path={path} size={size} />
+            {Icon
+              ? <div style={{ width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><Icon /></div>
+              : <MenuIcon path={path} size={size} />
+            }
             <span
               style={{
                 fontFamily: '"Red Hat Display", sans-serif',
@@ -637,7 +651,7 @@ export default function DrawerPage() {
         </div>
 
         {/* ── Quando Usar ── */}
-        <div>
+        <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-4">Quando Usar</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {[
@@ -675,6 +689,40 @@ export default function DrawerPage() {
                   <p className="text-sm font-medium text-[#13283C]">{label}</p>
                   <p className="text-xs text-[#666666] mt-0.5">{desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Especificações Técnicas ── */}
+        <div>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+            {[
+              ['Largura do painel',              '742px'],
+              ['Altura do painel',               '1080px'],
+              ['Padding horizontal',             '48px (esquerda e direita)'],
+              ['Padding superior',               '16px'],
+              ['Padding inferior',               '48px'],
+              ['Gap principal',                  '48px — entre área de conteúdo e footer'],
+              ['Gap header → conteúdo',          '24px'],
+              ['Gap interno header',             '8px — entre bloco de título e parágrafo'],
+              ['Gap breadcrumb → título',        '16px'],
+              ['Área de conteúdo',               'border-radius 16px, background #F5F5F5, flex-1'],
+              ['Botão fechar (←)',               '40 × 40px — posição left 4px, top 4px'],
+              ['Botão opções (⋮)',               '40 × 40px — posição left 702px, top 4px'],
+              ['Gap entre botões footer',        '24px'],
+              ['Altura botões footer',           '40px'],
+              ['Botão Cancel — borda/texto',     '1px solid #E9786B — var(--error)'],
+              ['Botão Primary — background',     '#304A64 — var(--blue-600)'],
+              ['Menu — padding',                 '8px'],
+              ['Menu — border-radius',           '4px'],
+              ['Menu — sombra (Elevation/2)',    '0 2px 6px 2px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.30)'],
+              ['Tipografia — item de menu',      '14px / 400 / 20px, letter-spacing 0.25px, Red Hat Display'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[260px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

@@ -76,10 +76,15 @@ function FileIcon({ color, ext, Shape, shapeName }) {
   }
 
   return (
-    <div className="relative flex flex-col items-center" style={{ cursor: 'pointer' }} onClick={handleClick}>
+    <div
+      className="relative flex flex-col items-center gap-1"
+      style={{ cursor: 'pointer' }}
+      onClick={handleClick}
+      title="Clique para copiar"
+    >
       <div
         style={{ backgroundColor: color }}
-        className="flex flex-col items-center justify-center gap-0.5 rounded-[3px] shrink-0 size-8"
+        className="flex flex-col items-center justify-center gap-0.5 rounded-[4px] shrink-0 size-10 shadow-sm hover:shadow-md transition-all"
       >
         <div className="shrink-0 leading-[0]">
           <Shape />
@@ -127,24 +132,41 @@ function FileIcon({ color, ext, Shape, shapeName }) {
   )
 }
 
-// ── Category section ───────────────────────────────────────────────────────────
+// ── Category card ──────────────────────────────────────────────────────────────
 
-function Category({ label, icons, gap = 32 }) {
+function Category({ label, icons }) {
   return (
-    <div className="flex flex-col gap-4">
-      <p
-        style={{
+    <div className="bg-white rounded-[12px] border border-[#e9eff2] p-5 flex flex-col gap-4"
+      style={{ transition: 'box-shadow 0.15s' }}
+      onMouseEnter={e => e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)'}
+      onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
+    >
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <span style={{
+          fontFamily: '"Red Hat Display", sans-serif',
+          fontWeight: 600,
+          fontSize: 13,
+          color: '#13283C',
+          letterSpacing: '0.1px',
+        }}>
+          {label}
+        </span>
+        <span style={{
           fontFamily: '"Red Hat Display", sans-serif',
           fontWeight: 400,
-          fontSize: 14,
-          lineHeight: '20px',
-          letterSpacing: '0.25px',
-          color: 'var(--text-primary, #4a4a4a)',
-        }}
-      >
-        {label}
-      </p>
-      <div className="flex items-start" style={{ gap }}>
+          fontSize: 11,
+          color: '#9e9e9e',
+        }}>
+          {icons.length} {icons.length === 1 ? 'formato' : 'formatos'}
+        </span>
+      </div>
+
+      {/* Divider */}
+      <div className="border-t border-[#f0f0f0]" />
+
+      {/* Icons */}
+      <div className="flex flex-wrap gap-3">
         {icons.map((item, i) => (
           <FileIcon key={i} color={item.color} ext={item.ext} Shape={item.Shape} shapeName={item.shapeName} />
         ))}
@@ -250,13 +272,19 @@ export default function IconFilesPage() {
           description="Ícones de tipos de arquivo organizados por categoria, utilizados para identificação visual de formatos no sistema."
         />
 
+        {/* Hint */}
+        <div className="mb-6 flex items-center gap-2 text-sm text-[#9e9e9e]" style={{ fontFamily: '"Red Hat Display", sans-serif' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Clique em qualquer ícone para copiar o snippet JSX
+        </div>
+
         <div className="mb-12">
-          <div className="bg-white rounded-[14px] border border-black/10 p-8">
-            <div className="flex flex-col gap-10">
-              {CATEGORIES.map((cat) => (
-                <Category key={cat.label + cat.icons[0]?.ext} {...cat} />
-              ))}
-            </div>
+          <div className="grid grid-cols-3 gap-4">
+            {CATEGORIES.map((cat) => (
+              <Category key={cat.label + cat.icons[0]?.ext} {...cat} />
+            ))}
           </div>
         </div>
 
@@ -266,7 +294,7 @@ export default function IconFilesPage() {
             {[
               ['Tamanho', '32 × 32 px'],
               ['Padding interno', '8 px'],
-              ['Border radius', '3 px'],
+              ['Border radius', '4 px'],
               ['Tipografia', 'Red Hat Display Black, 8.25 px, branco'],
               ['Ícone SVG', 'Branco, dimensões variáveis por categoria'],
               ['Gap entre ícones', '32 px (Outros: 28 px)'],

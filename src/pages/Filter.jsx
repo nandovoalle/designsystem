@@ -476,11 +476,12 @@ function FavoritesPanel() {
 
 /* ─── Page helpers ─── */
 
-function PreviewPanel({ children, isDark, className = '' }) {
+function PreviewPanel({ children, isDark, stage = false, className = '' }) {
+  const lightBg = stage ? 'bg-[#f5f5f5]' : 'bg-white'
   return (
     <div
       className={`rounded-[16px] border overflow-auto p-8 ${className} ${
-        isDark ? 'bg-[#32353A] border-[#4B4E52]' : 'bg-[#f5f5f5] border-black/10'
+        isDark ? 'bg-[#32353A] border-[#4B4E52]' : `${lightBg} border-black/10`
       }`}
     >
       {children}
@@ -525,10 +526,10 @@ export default function FilterPage() {
         <div className="mb-12">
           <SectionTitle isDark={isDark}>Preview</SectionTitle>
           <SectionDesc isDark={isDark}>
-            Layout completo — barra lateral recolhida, painel de filtros atualizado, seletor de filtros e gestão de favoritos.
+            Layout completo — barra lateral recolhida, painel de filtros, seletor de filtros e gestão de favoritos.
           </SectionDesc>
-          <PreviewPanel isDark={isDark}>
-            <div className="flex gap-[10px] items-start">
+          <PreviewPanel isDark={isDark} stage>
+            <div className="flex gap-[10px] items-start overflow-x-auto">
               <CollapsedSidebar />
               <AdvancedSearchPanel />
               <AddFilterPanel />
@@ -537,82 +538,89 @@ export default function FilterPage() {
           </PreviewPanel>
         </div>
 
-        {/* Painel principal */}
+        {/* Barra lateral */}
         <div className="mb-12">
-          <SectionTitle isDark={isDark}>Painel de Filtros</SectionTitle>
+          <SectionTitle isDark={isDark}>Barra Lateral</SectionTitle>
           <SectionDesc isDark={isDark}>
-            Painel principal com toggle de exibição (Cards/Lista), seleção de nomenclatura e campos de pesquisa avançada.
+            Estado recolhido (40 px) e estado expandido (288 px) — alternados pelo botão de chevron.
           </SectionDesc>
-          <PreviewPanel isDark={isDark}>
-            <div className="flex justify-center">
-              <AdvancedSearchPanel />
+          <PreviewPanel isDark={isDark} stage>
+            <div className="flex gap-8 items-start justify-center flex-wrap">
+              <div className="flex flex-col items-center gap-3">
+                <CollapsedSidebar />
+                <span className={`text-xs ${isDark ? 'text-[#C1C2C4]' : 'text-[#666666]'}`}>Recolhida</span>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <AdvancedSearchPanel />
+                <span className={`text-xs ${isDark ? 'text-[#C1C2C4]' : 'text-[#666666]'}`}>Expandida</span>
+              </div>
             </div>
           </PreviewPanel>
         </div>
 
-        {/* Seletor de Filtros */}
+        {/* Painéis flutuantes */}
         <div className="mb-12">
-          <SectionTitle isDark={isDark}>Seletor de Filtros</SectionTitle>
+          <SectionTitle isDark={isDark}>Painéis Flutuantes</SectionTitle>
           <SectionDesc isDark={isDark}>
-            Dropdown para adicionar ou remover campos de filtro. Itens ativos exibem <strong>✕</strong> (remover) e disponíveis exibem <strong>+</strong> (adicionar).
+            Seletor de filtros (adicionar / remover campos) e gestão de favoritos — exibidos como popovers sobre o conteúdo.
           </SectionDesc>
-          <PreviewPanel isDark={isDark}>
-            <div className="flex justify-center">
-              <AddFilterPanel />
-            </div>
-          </PreviewPanel>
-        </div>
-
-        {/* Filtros Favoritos */}
-        <div className="mb-12">
-          <SectionTitle isDark={isDark}>Filtros Favoritos</SectionTitle>
-          <SectionDesc isDark={isDark}>
-            Gestão de filtros favoritos para reutilização rápida. Estrela preenchida indica filtro favoritado.
-          </SectionDesc>
-          <PreviewPanel isDark={isDark}>
-            <div className="flex justify-center">
-              <FavoritesPanel />
+          <PreviewPanel isDark={isDark} stage>
+            <div className="flex gap-8 items-start justify-center flex-wrap">
+              <div className="flex flex-col items-center gap-3">
+                <AddFilterPanel />
+                <span className={`text-xs ${isDark ? 'text-[#C1C2C4]' : 'text-[#666666]'}`}>Seletor de Filtros</span>
+              </div>
+              <div className="flex flex-col items-center gap-3">
+                <FavoritesPanel />
+                <span className={`text-xs ${isDark ? 'text-[#C1C2C4]' : 'text-[#666666]'}`}>Filtros Favoritos</span>
+              </div>
             </div>
           </PreviewPanel>
         </div>
 
         {/* Especificações Técnicas */}
-        <div>
-          <SectionTitle isDark={isDark} className="mb-4">
-            Especificações Técnicas
-          </SectionTitle>
-          <div
-            className={`rounded-[14px] border p-6 space-y-3 text-sm ${
-              isDark ? 'bg-[#32353A] border-[#4B4E52]' : 'bg-white border-black/10'
-            }`}
-          >
-            {[
-              ['Painel principal',        '288×auto px, border-radius 4px, padding 24px, gap 42px'],
-              ['Barra lateral recolhida', '40×auto px, border-radius 4px, py-16px, badge vermelho #e9786b'],
-              ['Painéis flutuantes',      '238×auto px, border-radius 4px, padding 16px, gap 24px'],
-              ['Sombra flutuante',        '0px 1px 1px rgba(0,0,0,0.30) + 0px 2px 3px rgba(0,0,0,0.15)'],
-              ['Toggle Exibição (ativo)', 'bg #e6f4fd, border-2 #0094ee, ícone #0094ee + checkmark'],
-              ['Toggle Exibição (inativo)','border-2 #e9eff2, sem background colorido'],
-              ['Chip ativo (Categorização)', 'bg #0094ee, texto branco, h-24px, border-radius 4px, px-8px'],
-              ['Chip inativo (Legado)',    'bg #9e9e9e, texto branco, h-24px, border-radius 4px, px-8px'],
-              ['Campos texto / select',   'h-40px, border 1px #e9eff2, border-radius 4px'],
-              ['Botão primário (Filtrar)', '#304a64, texto branco, h-40px'],
-              ['Botão outline (Limpar)',  'borda + texto #304a64, h-40px'],
-              ['Ícone ✕ (remover)',       'lucide X 24px, cor #e53935'],
-              ['Ícone + (adicionar)',     'lucide Plus 24px, cor #304a64'],
-              ['Estrela favorito',        'Preenchida: #f9a825 • Vazia: #9e9e9e'],
-              ['Tipografia — labels',     'Red Hat Display Regular 14px / 20px, letter-spacing 0.25px'],
-              ['Tipografia — título',     'Red Hat Display Bold 16px / 24px, letter-spacing 0.15px'],
-              ['Tipografia — chips',      'Red Hat Display Medium 12px / 16px, letter-spacing 0.5px'],
-              ['Tipografia — botões',     'Red Hat Display Medium 14px / 20px, letter-spacing 0.1px'],
-            ].map(([label, value]) => (
-              <div key={label} className="flex gap-2">
-                <span className={`font-medium min-w-[230px] ${isDark ? 'text-white' : 'text-[#13283C]'}`}>
-                  {label}:
-                </span>
-                <span className={isDark ? 'text-[#C1C2C4]' : 'text-[#666666]'}>{value}</span>
-              </div>
-            ))}
+        <div className="mb-12">
+          <SectionTitle isDark={isDark} className="mb-1">Especificações Técnicas</SectionTitle>
+          <SectionDesc isDark={isDark}>Medidas, cores e tipografia dos subcomponentes de filtro.</SectionDesc>
+          <div className={`rounded-[14px] border overflow-hidden ${isDark ? 'border-[#4B4E52]' : 'border-black/10'}`}>
+            <table className="w-full text-sm">
+              <thead>
+                <tr className={`border-b ${isDark ? 'border-[#4B4E52] bg-[#32353A]' : 'border-[#E9EFF2] bg-[#FAFAFA]'}`}>
+                  <th className={`text-left p-4 font-medium ${isDark ? 'text-white' : 'text-[#13283C]'}`}>Elemento</th>
+                  <th className={`text-left p-4 font-medium ${isDark ? 'text-white' : 'text-[#13283C]'}`}>Especificação</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['Painel principal',           '288 × auto px · border-radius 4px · padding 24px · gap 42px'],
+                  ['Barra lateral recolhida',    '40 × auto px · border-radius 4px · py-16px · badge vermelho #E9786B'],
+                  ['Painéis flutuantes',         '238 × auto px · border-radius 4px · padding 16px · gap 24px'],
+                  ['Sombra flutuante',           '0px 1px 1px rgba(0,0,0,0.30) + 0px 2px 3px rgba(0,0,0,0.15)'],
+                  ['Toggle Exibição — ativo',    'bg #E6F4FD · border-2 #0094EE · ícone #0094EE · checkmark badge'],
+                  ['Toggle Exibição — inativo',  'border-2 #E9EFF2 · sem background colorido'],
+                  ['Chip ativo (Categorização)', 'bg #0094EE · texto branco · h-24px · border-radius 4px · px-8px'],
+                  ['Chip inativo (Legado)',       'bg #9E9E9E · texto branco · h-24px · border-radius 4px · px-8px'],
+                  ['Campos texto / select',      'h-40px · border 1px #E9EFF2 · border-radius 4px · focus #304A64'],
+                  ['Botão primário (Filtrar)',   'bg #304A64 · texto branco · h-40px · border-radius 4px'],
+                  ['Botão outline (Limpar)',     'border + texto #304A64 · h-40px · border-radius 4px'],
+                  ['Ícone ✕ (remover)',          'Lucide X 20px · cor #E53935'],
+                  ['Ícone + (adicionar)',        'Lucide Plus 20px · cor #9CB1C8'],
+                  ['Estrela favorito',           'Preenchida #F9A825 · Vazia #9E9E9E'],
+                  ['Tipografia — labels',        'Red Hat Display Regular 14px / 20px · letter-spacing 0.25px'],
+                  ['Tipografia — títulos',       'Red Hat Display Bold 16px / 24px · letter-spacing 0.15px'],
+                  ['Tipografia — chips',         'Red Hat Display Medium 12px / 16px · letter-spacing 0.5px'],
+                  ['Tipografia — botões',        'Red Hat Display Medium 14px / 20px · letter-spacing 0.1px'],
+                ].map(([label, value], i, arr) => (
+                  <tr
+                    key={label}
+                    className={i < arr.length - 1 ? `border-b ${isDark ? 'border-[#4B4E52]' : 'border-[#E9EFF2]'}` : ''}
+                  >
+                    <td className={`p-4 font-medium whitespace-nowrap ${isDark ? 'text-white' : 'text-[#13283C]'}`}>{label}</td>
+                    <td className={`p-4 ${isDark ? 'text-[#C1C2C4]' : 'text-[#666666]'}`}>{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

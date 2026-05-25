@@ -310,7 +310,7 @@ export default function ChartPage() {
         </div>
 
         {/* Tokens */}
-        <div>
+        <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-4">Tokens de Cor</h2>
           <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
             {[
@@ -326,6 +326,32 @@ export default function ChartPage() {
                 <span className="font-medium text-[#13283C] min-w-[220px]">{label}</span>
                 <code className="text-xs font-mono text-[#9E9E9E]">{token}</code>
                 <code className="text-xs font-mono text-[#9E9E9E] ml-auto">{color}</code>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Especificações Técnicas */}
+        <div>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+            {[
+              ['ChartCard — largura',            '456px — fixa para Rosca e Barra de Status'],
+              ['ChartCard — header altura',      '40px — font 16px Bold, tracking 0.15px'],
+              ['Performance card — tamanho',     '421 × 365px'],
+              ['Performance card — header',      'py-10px, pl-4, pr-2 — 40px de altura aparente'],
+              ['Performance card — body padding','px-6 pt-6, gap 46px entre stats e footer'],
+              ['Legend dot',                     '8 × 8px, border-radius 50%'],
+              ['Número de destaque (contagem)',   '24px Bold, Red Hat Display, tracking 0.15px'],
+              ['Tipografia geral',               '14px / leading-6 (24px) / tracking 0.15px, Red Hat Display'],
+              ['Gap legenda interna',            '8px (entre dot, label e dados)'],
+              ['Anéis radiais',                  '3 níveis — Hoje (blue), Semana (green), Mês (purple)'],
+              ['Borda do card',                  '1px solid #E9EFF2 — var(--divider)'],
+              ['Border radius do card',          '4px (Performance) / 16px (Rosca e Barra)'],
+            ].map(([label, value]) => (
+              <div key={label} className="flex gap-2">
+                <span className="font-medium text-[#13283C] min-w-[260px]">{label}:</span>
+                <span className="text-[#666666]">{value}</span>
               </div>
             ))}
           </div>

@@ -221,7 +221,7 @@ export default function RadioButtonsPage() {
 
         {/* Especificações */}
         <div>
-          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações</h2>
+          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
           <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
             {[
               ['Tamanho do ícone', '24 × 24px'],

@@ -432,7 +432,7 @@ export default function ServiceCenterPage() {
       </section>
 
       {/* Layout principles */}
-      <section>
+      <section className="mb-10">
         <h2 className="text-base font-semibold text-[#13283C] mb-4">Princípios de layout</h2>
         <div className="grid md:grid-cols-3 gap-4">
           {[
@@ -470,6 +470,34 @@ export default function ServiceCenterPage() {
                 {p.title}
               </p>
               <p style={{ fontSize: 13, color: '#666666', lineHeight: '18px' }}>{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Especificações Técnicas */}
+      <section>
+        <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
+        <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
+          {[
+            ['Header — altura',                  '131px'],
+            ['Header — border-radius inferior',  '10px (cantos inferiores)'],
+            ['Barra lateral — largura',          '40px — fixa, z-index acima do conteúdo'],
+            ['Painel Esquerdo — largura',        '~332px — redimensionável via drag handle'],
+            ['Painel Central — largura',         '~630px — redimensionável, padrão mais largo'],
+            ['Painel Direito — largura',         '~36% — redimensionável via drag handle'],
+            ['Mini Sidebar Direita — largura',   '~2% — fixa'],
+            ['Drag handles',                     '8px de largura — entre C↔D e D↔E'],
+            ['Borda dos painéis',                '1px solid #E9EFF2 — var(--divider)'],
+            ['Border radius dos painéis',        '3px'],
+            ['Background painéis C, D, E, F',   '#FFFFFF'],
+            ['Background área externa',          '#F5F5F5'],
+            ['Aspect ratio padrão',              '16:9.5'],
+            ['Tipografia geral',                 'Red Hat Display, 11–13px'],
+          ].map(([label, value]) => (
+            <div key={label} className="flex gap-2">
+              <span className="font-medium text-[#13283C] min-w-[260px]">{label}:</span>
+              <span className="text-[#666666]">{value}</span>
             </div>
           ))}
         </div>

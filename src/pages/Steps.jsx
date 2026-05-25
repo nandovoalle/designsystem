@@ -66,36 +66,63 @@ export default function StepsPage() {
         <div className="mb-12">
           <SectionTitle isDark={isDark}>Preview</SectionTitle>
           <SectionDesc isDark={isDark}>
-            Todos os estados do componente <code className={`font-mono text-xs ${isDark ? 'text-[#808285]' : 'text-[#9E9E9E]'}`}>Steps</code> — com e sem separador chevron.
+            Todos os estados do componente{' '}
+            <code className={`font-mono text-xs px-1 py-0.5 rounded ${isDark ? 'bg-[#1D2024] text-[#808285]' : 'bg-black/5 text-[#9E9E9E]'}`}>
+              Steps
+            </code>{' '}
+            — com e sem separador chevron.
           </SectionDesc>
-          <PreviewPanel isDark={isDark}>
-            {/* With chevron */}
-            <div className="flex flex-wrap items-center gap-0 mb-6">
-              {ALL_STATES.map(({ state, label }, i) => (
-                <Steps
-                  key={state}
-                  state={state}
-                  label={label}
-                  number={i + 1}
-                  showChevron={i < ALL_STATES.length - 1}
-                  isDark={isDark}
-                />
-              ))}
+
+          {/* Outer canvas with dot grid */}
+          <div
+            className={`rounded-[16px] border p-8 ${isDark ? 'bg-[#292C30] border-[#4B4E52]' : 'bg-[#F5F7FA] border-black/8'}`}
+            style={{
+              backgroundImage: isDark
+                ? 'radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px)'
+                : 'radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px)',
+              backgroundSize: '22px 22px',
+            }}
+          >
+            <div className="flex flex-col gap-5">
+              {/* Com separador */}
+              <div className={`rounded-[12px] border p-6 ${isDark ? 'bg-[#1D2024] border-[#3A3D41]' : 'bg-white border-black/8 shadow-sm'}`}>
+                <p className={`text-[10px] font-semibold uppercase tracking-[0.12em] mb-5 ${isDark ? 'text-[#4B4E52]' : 'text-[#C0C0C0]'}`}>
+                  Com separador
+                </p>
+                <div className="flex flex-wrap items-center gap-0">
+                  {ALL_STATES.map(({ state, label }, i) => (
+                    <Steps
+                      key={state}
+                      state={state}
+                      label={label}
+                      number={i + 1}
+                      showChevron={i < ALL_STATES.length - 1}
+                      isDark={isDark}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Sem separador */}
+              <div className={`rounded-[12px] border p-6 ${isDark ? 'bg-[#1D2024] border-[#3A3D41]' : 'bg-white border-black/8 shadow-sm'}`}>
+                <p className={`text-[10px] font-semibold uppercase tracking-[0.12em] mb-5 ${isDark ? 'text-[#4B4E52]' : 'text-[#C0C0C0]'}`}>
+                  Sem separador
+                </p>
+                <div className="flex flex-wrap items-center gap-6">
+                  {ALL_STATES.map(({ state, label }, i) => (
+                    <Steps
+                      key={state}
+                      state={state}
+                      label={label}
+                      number={i + 1}
+                      showChevron={false}
+                      isDark={isDark}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-            {/* Without chevron */}
-            <div className="flex flex-wrap items-center gap-4">
-              {ALL_STATES.map(({ state, label }, i) => (
-                <Steps
-                  key={state}
-                  state={state}
-                  label={label}
-                  number={i + 1}
-                  showChevron={false}
-                  isDark={isDark}
-                />
-              ))}
-            </div>
-          </PreviewPanel>
+          </div>
         </div>
 
         {/* Individual states */}

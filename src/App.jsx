@@ -4,7 +4,7 @@ import {
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
   PanelLeft, PanelRight, AlignJustify, AppWindow, List, Hash, MoreHorizontal, UserRound,
   MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers, ToggleRight,
-  Table2, ListOrdered, BarChart2, Filter, Files,
+  Table2, ListOrdered, BarChart2, Filter, Files, Hexagon,
 } from 'lucide-react'
 
 import { disableTrail } from './components/ui/hero-designali'
@@ -44,44 +44,46 @@ import CalendarPage from './pages/Calendar'
 import ChartPage from './pages/Chart'
 import FilterPage from './pages/Filter'
 import IconFilesPage from './pages/IconFiles'
+import LogoPage from './pages/Logo'
 
 const navItems = [
   { to: '/',               label: 'Início',         Icon: House },
-  { to: '/colors',         label: 'Cores',          Icon: Palette },
-  { to: '/typography',     label: 'Typography',     Icon: Type },
+  { to: '/action-bars',    label: 'Action Bars',    Icon: MousePointerClick },
   { to: '/alerts',         label: 'Alerts',         Icon: CircleAlert },
   { to: '/badges',         label: 'Badges',         Icon: Award },
-  { to: '/favicon',        label: 'Favicon',        Icon: Globe },
-  { to: '/icon-files',    label: 'Icon Files',     Icon: Files },
-  { to: '/action-bars',    label: 'Action bars',    Icon: MousePointerClick },
   { to: '/breadcrumb',     label: 'Breadcrumb',     Icon: Navigation },
-  { to: '/icon-button',    label: 'Icon Button',    Icon: SquareMousePointer },
   { to: '/buttons',        label: 'Buttons',        Icon: RectangleHorizontal },
-  { to: '/cards',          label: 'Cards',          Icon: LayoutTemplate },
-  { to: '/chips',          label: 'Chips',          Icon: Tag },
-  { to: '/date-field',     label: 'Date Field',     Icon: Calendar },
   { to: '/calendar',       label: 'Calendar',       Icon: Calendar },
+  { to: '/cards',          label: 'Cards',          Icon: LayoutTemplate },
+  { to: '/chart',          label: 'Charts',         Icon: BarChart2 },
   { to: '/checkbox',       label: 'Checkbox',       Icon: CheckSquare },
+  { to: '/chips',          label: 'Chips',          Icon: Tag },
+  { to: '/colors',         label: 'Cores',          Icon: Palette },
+  { to: '/date-field',     label: 'Date Field',     Icon: Calendar },
   { to: '/drawer',         label: 'Drawer',         Icon: PanelRight },
+  { to: '/favicon',        label: 'Favicon',        Icon: Globe },
   { to: '/filter',         label: 'Filter',         Icon: Filter },
-  { to: '/modal',          label: 'Modal',          Icon: AppWindow },
-  { to: '/service-center', label: 'Service Center', Icon: PanelLeft },
+  { to: '/icon-button',    label: 'Icon Button',    Icon: SquareMousePointer },
+  { to: '/icon-files',     label: 'Icon Files',     Icon: Files },
+  { to: '/logo',           label: 'Logo',           Icon: Hexagon },
   { to: '/mega-menu',      label: 'Mega Menu',      Icon: AlignJustify },
   { to: '/menu',           label: 'Menu',           Icon: List },
+  { to: '/modal',          label: 'Modal',          Icon: AppWindow },
   { to: '/number-input',   label: 'Number Input',   Icon: Hash },
   { to: '/pagination',     label: 'Pagination',     Icon: MoreHorizontal },
   { to: '/person',         label: 'Person',         Icon: UserRound },
   { to: '/popover',        label: 'Popover',        Icon: MessageSquare },
-  { to: '/chart',          label: 'Charts',         Icon: BarChart2 },
   { to: '/progress',       label: 'Progress',       Icon: LoaderCircle },
   { to: '/radio-buttons',  label: 'Radio Buttons',  Icon: Circle },
   { to: '/select',         label: 'Select',         Icon: ChevronsUpDown },
+  { to: '/service-center', label: 'Service Center', Icon: PanelLeft },
+  { to: '/steps',          label: 'Steps',          Icon: ListOrdered },
   { to: '/switch',         label: 'Switch',         Icon: ToggleRight },
   { to: '/tables',         label: 'Tables',         Icon: Table2 },
   { to: '/tabs',           label: 'Tabs',           Icon: Layers },
   { to: '/text-field',     label: 'Text Field',     Icon: TextCursorInput },
-  { to: '/steps',          label: 'Steps',          Icon: ListOrdered },
   { to: '/tooltip',        label: 'Tooltip',        Icon: MessageSquare },
+  { to: '/typography',     label: 'Typography',     Icon: Type },
 ]
 
 export default function App() {
@@ -177,6 +179,7 @@ export default function App() {
           <Route path="/calendar"       element={<CalendarPage />} />
           <Route path="/chart"          element={<ChartPage />} />
           <Route path="/tooltip"        element={<TooltipPage />} />
+          <Route path="/logo"           element={<LogoPage />} />
         </Routes>
       </main>
     </div>

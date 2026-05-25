@@ -85,6 +85,7 @@ const SECTIONS_LIGHT = [
       { name: 'alert-green',  hex: '#2D7A31', token: '--alert-green' },
       { name: 'alert-red',    hex: '#C0392B', token: '--alert-red' },
       { name: 'alert-yellow', hex: '#856404', token: '--alert-yellow' },
+      { name: 'alert-orange', hex: '#7C3A00', token: '--alert-orange' },
     ],
   },
   {
@@ -95,6 +96,7 @@ const SECTIONS_LIGHT = [
       { name: 'alert-green-bg',  hex: '#D4EDDA', token: '--alert-green-bg' },
       { name: 'alert-red-bg',    hex: '#F8D7DA', token: '--alert-red-bg' },
       { name: 'alert-yellow-bg', hex: '#FFF3CD', token: '--alert-yellow-bg' },
+      { name: 'alert-orange-bg', hex: '#FEE8D6', token: '--alert-orange-bg' },
     ],
   },
   {
@@ -143,7 +145,7 @@ const SECTIONS_DARK = [
       { name: 'green',    hex: '#4BAF50', token: '--state-green' },
       { name: 'green-2',  hex: '#67D18A', token: '--state-green-2' },
       { name: 'yellow',   hex: '#E9C16C', token: '--state-yellow' },
-      { name: 'orange',   hex: '#FF9E5F', token: '--state-orange' },
+      { name: 'orange',   hex: '#FFBA85', token: '--state-orange' },
       { name: 'red',      hex: '#E9786B', token: '--state-red' },
       { name: 'purple',   hex: '#8080EC', token: '--state-purple' },
       { name: 'staging',  hex: '#F6BD67', token: '--state-staging' },
@@ -157,6 +159,7 @@ const SECTIONS_DARK = [
       { name: 'alert-green',  hex: '#9ED49D', token: '--alert-green' },
       { name: 'alert-red',    hex: '#FFB4AB', token: '--alert-red' },
       { name: 'alert-yellow', hex: '#E9C16C', token: '--alert-yellow' },
+      { name: 'alert-orange', hex: '#FFBA85', token: '--alert-orange' },
     ],
   },
   {
@@ -167,6 +170,7 @@ const SECTIONS_DARK = [
       { name: 'alert-green-bg',  hex: '#48544D', token: '--alert-green-bg' },
       { name: 'alert-red-bg',    hex: '#5B4E50', token: '--alert-red-bg' },
       { name: 'alert-yellow-bg', hex: '#575144', token: '--alert-yellow-bg' },
+      { name: 'alert-orange-bg', hex: '#52341C', token: '--alert-orange-bg' },
     ],
   },
   {

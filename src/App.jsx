@@ -1,16 +1,21 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
 import {
-  Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation,
+  Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation, Ruler,
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
   PanelLeft, PanelRight, AlignJustify, AppWindow, List, Hash, MoreHorizontal, UserRound,
   MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers, ToggleRight,
-  Table2, ListOrdered, BarChart2, Filter, Files, Hexagon,
+  Table2, ListOrdered, BarChart2, Flag, Filter, Files, Hexagon, LayoutGrid, Timer,
 } from 'lucide-react'
 
 import { disableTrail } from './components/ui/hero-designali'
 import HomePage from './pages/Home'
 import ColorsPage from './pages/Colors'
 import TypographyPage from './pages/Typography'
+import SpacingPage from './pages/Spacing'
+import RadiusPage from './pages/Radius'
+import ElevationPage from './pages/Elevation'
+import GridPage from './pages/Grid'
+import MotionPage from './pages/Motion'
 import BadgesPage from './pages/Badges'
 import AlertsPage from './pages/Alerts'
 import FaviconPage from './pages/Favicon'
@@ -42,12 +47,22 @@ import TablesPage from './pages/Tables'
 import StepsPage from './pages/Steps'
 import CalendarPage from './pages/Calendar'
 import ChartPage from './pages/Chart'
+import PriorityPage from './pages/Priority'
 import FilterPage from './pages/Filter'
 import IconFilesPage from './pages/IconFiles'
 import LogoPage from './pages/Logo'
 
 const navItems = [
   { to: '/',               label: 'Início',         Icon: House },
+  { divider: true,         label: 'Tokens' },
+  { to: '/colors',         label: 'Cores',          Icon: Palette },
+  { to: '/typography',     label: 'Typography',     Icon: Type },
+  { to: '/spacing',        label: 'Spacing',        Icon: Ruler },
+  { to: '/radius',         label: 'Radius',         Icon: Ruler },
+  { to: '/elevation',      label: 'Elevation',      Icon: Layers },
+  { to: '/grid',           label: 'Grid',           Icon: LayoutGrid },
+  { to: '/motion',         label: 'Motion',         Icon: Timer },
+  { divider: true,         label: 'Components' },
   { to: '/action-bars',    label: 'Action Bars',    Icon: MousePointerClick },
   { to: '/alerts',         label: 'Alerts',         Icon: CircleAlert },
   { to: '/badges',         label: 'Badges',         Icon: Award },
@@ -58,7 +73,6 @@ const navItems = [
   { to: '/chart',          label: 'Charts',         Icon: BarChart2 },
   { to: '/checkbox',       label: 'Checkbox',       Icon: CheckSquare },
   { to: '/chips',          label: 'Chips',          Icon: Tag },
-  { to: '/colors',         label: 'Cores',          Icon: Palette },
   { to: '/date-field',     label: 'Date Field',     Icon: Calendar },
   { to: '/drawer',         label: 'Drawer',         Icon: PanelRight },
   { to: '/favicon',        label: 'Favicon',        Icon: Globe },
@@ -71,6 +85,7 @@ const navItems = [
   { to: '/modal',          label: 'Modal',          Icon: AppWindow },
   { to: '/number-input',   label: 'Number Input',   Icon: Hash },
   { to: '/pagination',     label: 'Pagination',     Icon: MoreHorizontal },
+  { to: '/priority',       label: 'Priority',       Icon: Flag },
   { to: '/person',         label: 'Person',         Icon: UserRound },
   { to: '/popover',        label: 'Popover',        Icon: MessageSquare },
   { to: '/progress',       label: 'Progress',       Icon: LoaderCircle },
@@ -83,7 +98,6 @@ const navItems = [
   { to: '/tabs',           label: 'Tabs',           Icon: Layers },
   { to: '/text-field',     label: 'Text Field',     Icon: TextCursorInput },
   { to: '/tooltip',        label: 'Tooltip',        Icon: MessageSquare },
-  { to: '/typography',     label: 'Typography',     Icon: Type },
 ]
 
 export default function App() {
@@ -115,7 +129,18 @@ export default function App() {
 
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-          {navItems.map(({ to, label, Icon }) => (
+          {navItems.map((item, i) => {
+            if (item.divider) {
+              return (
+                <div key={`divider-${i}`} className="pt-4 pb-1 px-3">
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#9E9E9E]">
+                    {item.label}
+                  </span>
+                </div>
+              )
+            }
+            const { to, label, Icon } = item
+            return (
             <NavLink
               key={to}
               to={to}
@@ -131,7 +156,8 @@ export default function App() {
               <Icon size={20} />
               <span>{label}</span>
             </NavLink>
-          ))}
+            )
+          })}
         </nav>
 
         {/* Footer */}
@@ -146,6 +172,11 @@ export default function App() {
           <Route path="/"               element={<HomePage />} />
           <Route path="/colors"         element={<ColorsPage />} />
           <Route path="/typography"     element={<TypographyPage />} />
+          <Route path="/spacing"        element={<SpacingPage />} />
+          <Route path="/radius"         element={<RadiusPage />} />
+          <Route path="/elevation"      element={<ElevationPage />} />
+          <Route path="/grid"           element={<GridPage />} />
+          <Route path="/motion"         element={<MotionPage />} />
           <Route path="/alerts"         element={<AlertsPage />} />
           <Route path="/badges"         element={<BadgesPage />} />
           <Route path="/favicon"        element={<FaviconPage />} />
@@ -178,6 +209,7 @@ export default function App() {
           <Route path="/steps"          element={<StepsPage />} />
           <Route path="/calendar"       element={<CalendarPage />} />
           <Route path="/chart"          element={<ChartPage />} />
+          <Route path="/priority"       element={<PriorityPage />} />
           <Route path="/tooltip"        element={<TooltipPage />} />
           <Route path="/logo"           element={<LogoPage />} />
         </Routes>

@@ -3,7 +3,8 @@ import {
   Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation,
   SquareMousePointer, RectangleHorizontal, LayoutTemplate, Tag, Calendar, CheckSquare,
   PanelLeft, PanelRight, AlignJustify, AppWindow, List, Hash, MoreHorizontal, UserRound,
-  MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers,
+  MessageSquare, LoaderCircle, Circle, ChevronsUpDown, TextCursorInput, Layers, ToggleRight,
+  Table2,
 } from 'lucide-react'
 
 import HomePage from './pages/Home'
@@ -35,6 +36,8 @@ import SelectPage from './pages/Select'
 import TooltipPage from './pages/Tooltip'
 import TextFieldPage from './pages/TextField'
 import TabsPage from './pages/Tabs'
+import SwitchPage from './pages/Switch'
+import TablesPage from './pages/Tables'
 
 const navItems = [
   { to: '/',               label: 'Início',         Icon: House },
@@ -63,6 +66,8 @@ const navItems = [
   { to: '/progress',       label: 'Progress',       Icon: LoaderCircle },
   { to: '/radio-buttons',  label: 'Radio Buttons',  Icon: Circle },
   { to: '/select',         label: 'Select',         Icon: ChevronsUpDown },
+  { to: '/switch',         label: 'Switch',         Icon: ToggleRight },
+  { to: '/tables',         label: 'Tables',         Icon: Table2 },
   { to: '/tabs',           label: 'Tabs',           Icon: Layers },
   { to: '/text-field',     label: 'Text Field',     Icon: TextCursorInput },
   { to: '/tooltip',        label: 'Tooltip',        Icon: MessageSquare },
@@ -148,6 +153,8 @@ export default function App() {
           <Route path="/progress"       element={<ProgressPage />} />
           <Route path="/radio-buttons"  element={<RadioButtonsPage />} />
           <Route path="/select"         element={<SelectPage />} />
+          <Route path="/switch"         element={<SwitchPage />} />
+          <Route path="/tables"         element={<TablesPage />} />
           <Route path="/tabs"           element={<TabsPage />} />
           <Route path="/text-field"     element={<TextFieldPage />} />
           <Route path="/tooltip"        element={<TooltipPage />} />

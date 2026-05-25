@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { PageHeader } from '../components/PageHeader'
 
 const SIZES = [
@@ -130,6 +131,71 @@ function ChipDemo({ size = 'xs', state = 'enabled', leading = false, trailing = 
           }}
         >
           Label
+        </span>
+        {trailing && <CloseIcon size={cfg.iconSize} color={iconColor} />}
+      </div>
+    </div>
+  )
+}
+
+export function Chip({ label, size = 'xs', leading = false, trailing = false, disabled = false }) {
+  const [hovered, setHovered] = useState(false)
+  const cfg = SIZE_CONFIG[size]
+  const variant = leading && trailing ? 'both' : leading ? 'leading' : trailing ? 'trailing' : 'none'
+  const paddings = cfg.padding[variant]
+
+  const stateLayerBg = (() => {
+    if (disabled) return 'rgba(0,0,0,0.12)'
+    if (hovered) return 'rgba(255,255,255,0.08)'
+    return 'transparent'
+  })()
+
+  const textColor = disabled ? 'var(--text-disabled)' : 'var(--text-inverse)'
+  const iconColor = disabled ? '#9E9E9E' : '#FFFFFF'
+
+  return (
+    <div
+      onMouseEnter={() => !disabled && setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        backgroundColor: disabled ? 'transparent' : 'var(--blue-600)',
+        height: cfg.height,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 4,
+        flexShrink: 0,
+        cursor: disabled ? 'default' : 'default',
+      }}
+    >
+      <div
+        style={{
+          backgroundColor: stateLayerBg,
+          height: cfg.height,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: 4,
+          paddingTop: 4,
+          paddingBottom: 4,
+          gap: 4,
+          transition: 'background-color 0.1s ease',
+          ...paddings,
+        }}
+      >
+        {leading && <CheckCircleIcon size={cfg.iconSize} color={iconColor} />}
+        <span
+          style={{
+            fontFamily: '"Red Hat Display", sans-serif',
+            fontWeight: 500,
+            fontSize: cfg.fontSize,
+            lineHeight: cfg.lineHeight,
+            letterSpacing: cfg.letterSpacing,
+            color: textColor,
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {label}
         </span>
         {trailing && <CloseIcon size={cfg.iconSize} color={iconColor} />}
       </div>

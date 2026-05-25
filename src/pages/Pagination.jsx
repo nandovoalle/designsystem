@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { PageHeader } from '../components/PageHeader'
 
-function IconBtn({ onClick, disabled, tooltip, children }) {
+export function IconBtn({ onClick, disabled, tooltip, children }) {
   return (
     <div className="relative group flex flex-col items-center shrink-0">
       <button
@@ -27,7 +27,7 @@ function IconBtn({ onClick, disabled, tooltip, children }) {
   )
 }
 
-function PaginationUnit({ currentPage, totalPages, pageSize, totalItems, onPrev, onNext }) {
+export function PaginationUnit({ currentPage, totalPages, pageSize, totalItems, onPrev, onNext }) {
   const start = (currentPage - 1) * pageSize + 1
   const end = Math.min(currentPage * pageSize, totalItems)
 

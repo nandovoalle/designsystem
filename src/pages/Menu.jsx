@@ -1,5 +1,55 @@
+import { useState } from 'react'
 import { Plus, ChevronRight, List } from 'lucide-react'
 import { PageHeader } from '../components/PageHeader'
+
+export function Menu({ items = [], onSelect, width }) {
+  const [hoveredIndex, setHoveredIndex] = useState(null)
+  return (
+    <div
+      style={{
+        backgroundColor: 'white',
+        borderRadius: 4,
+        padding: 8,
+        width: width ?? 'max-content',
+        boxShadow: '0px 2px 6px 2px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3)',
+        display: 'inline-flex',
+        flexDirection: 'column',
+      }}
+    >
+      {items.map((item, i) => {
+        const isSelected = item.selected
+        const isHovered  = hoveredIndex === i && !isSelected
+        const bg = isSelected ? '#304a64' : isHovered ? 'rgba(0,0,0,0.08)' : 'transparent'
+        const textColor = isSelected ? '#ffffff' : '#4a4a4a'
+        return (
+          <div
+            key={i}
+            onMouseEnter={() => setHoveredIndex(i)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            onMouseDown={() => onSelect && onSelect(item.value)}
+            style={{ height: 40, display: 'flex', flexDirection: 'column', justifyContent: 'center', flexShrink: 0, cursor: 'pointer' }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', padding: 8, borderRadius: 4, backgroundColor: bg }}>
+              <span
+                style={{
+                  flex: 1,
+                  fontFamily: '"Red Hat Display", sans-serif',
+                  fontWeight: 400,
+                  fontSize: 14,
+                  lineHeight: '20px',
+                  letterSpacing: '0.25px',
+                  color: textColor,
+                }}
+              >
+                {item.label}
+              </span>
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 const STATES = [
   { id: 'enabled',  label: 'Enabled'  },

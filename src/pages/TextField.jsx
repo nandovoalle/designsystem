@@ -157,6 +157,50 @@ function TextField({
   )
 }
 
+export function TextFieldLeadingIcon({ value, onChange, placeholder = 'Pesquisar', width = 256 }) {
+  const [focused, setFocused] = useState(false)
+  return (
+    <div
+      style={{
+        width,
+        height: 40,
+        border: `1px solid ${focused ? '#304a64' : '#e9eff2'}`,
+        borderRadius: 4,
+        padding: '4px 8px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        boxSizing: 'border-box',
+        transition: 'border-color 0.15s ease',
+        backgroundColor: 'transparent',
+      }}
+    >
+      <Search size={18} color="#9e9e9e" strokeWidth={2} style={{ flexShrink: 0 }} />
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
+        style={{
+          flex: 1,
+          border: 'none',
+          outline: 'none',
+          background: 'transparent',
+          fontFamily: '"Red Hat Display", sans-serif',
+          fontSize: 14,
+          fontWeight: 400,
+          lineHeight: '20px',
+          letterSpacing: '0.25px',
+          color: '#4a4a4a',
+          minWidth: 0,
+        }}
+      />
+    </div>
+  )
+}
+
 /* ─── Dados das variantes ────────────────────────────────────────── */
 const STATES = ['enabled', 'focused', 'writing', 'disabled', 'error']
 const STATE_LABELS = {

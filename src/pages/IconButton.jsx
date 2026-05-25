@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Plus } from 'lucide-react'
 import { PageHeader } from '../components/PageHeader'
 
@@ -68,6 +69,7 @@ function IconButtonDemo({ style = 'standard', state = 'enabled' }) {
     if (isDisabled) return 'var(--text-disabled)'
     if (style === 'filled') return 'var(--text-inverse)'
     if (style === 'grey') return 'var(--blue-800)'
+    if (style === 'standard') return 'var(--blue-200)'
     return 'var(--blue-600)'
   })()
 
@@ -114,6 +116,67 @@ function IconButtonDemo({ style = 'standard', state = 'enabled' }) {
         </div>
       )}
     </div>
+  )
+}
+
+export function IconButton({ icon, onClick, title, iconStyle = 'standard', disabled = false }) {
+  const [hovered, setHovered] = useState(false)
+
+  const containerStyle = {
+    width: 40,
+    height: 40,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 4,
+    flexShrink: 0,
+    ...(iconStyle === 'filled' && !disabled ? { backgroundColor: 'var(--blue-600)' } : {}),
+    ...(iconStyle === 'outlined' && !disabled ? { border: '1px solid var(--blue-600)' } : {}),
+    ...(iconStyle === 'outlined' && disabled ? { border: '1px solid rgba(0,0,0,0.12)' } : {}),
+  }
+
+  const stateLayerBg = (() => {
+    if (disabled || !hovered) return 'transparent'
+    if (iconStyle === 'filled') return 'rgba(255,255,255,0.08)'
+    if (iconStyle === 'outlined') return 'rgba(48,74,100,0.08)'
+    if (iconStyle === 'grey') return 'rgba(0,0,0,0.08)'
+    return 'rgba(156,177,200,0.08)'
+  })()
+
+  const iconColor = (() => {
+    if (disabled) return 'var(--text-disabled)'
+    if (iconStyle === 'filled') return 'var(--text-inverse)'
+    if (iconStyle === 'grey') return 'var(--blue-800)'
+    if (iconStyle === 'standard') return 'var(--blue-200)'
+    return 'var(--blue-600)'
+  })()
+
+  return (
+    <button
+      onClick={!disabled ? onClick : undefined}
+      disabled={disabled}
+      title={title}
+      onMouseEnter={() => !disabled && setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ background: 'none', border: 'none', padding: 0, cursor: disabled ? 'default' : 'pointer' }}
+    >
+      <div style={containerStyle}>
+        <div style={{
+          width: 40,
+          height: 40,
+          backgroundColor: stateLayerBg,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: 4,
+          transition: 'background-color 0.1s ease',
+        }}>
+          <span className="material-symbols-outlined" style={{ fontSize: 24, color: iconColor }}>
+            {icon}
+          </span>
+        </div>
+      </div>
+    </button>
   )
 }
 

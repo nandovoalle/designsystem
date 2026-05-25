@@ -141,7 +141,7 @@ function SelectStatic({ state = 'enabled' }) {
   const isOpen = state === 'focused'
   const iconColor = getIconColor(state)
   return (
-    <div style={{ width: 210, position: 'relative' }}>
+    <div style={{ width: 210 }}>
       <div style={{ paddingBottom: 8 }}>
         <span style={{ ...FONT, color: getLabelColor(state) }}>Label</span>
       </div>
@@ -153,7 +153,7 @@ function SelectStatic({ state = 'enabled' }) {
         }
       </div>
       {isOpen && (
-        <div style={{ backgroundColor: 'white', borderRadius: 4, padding: 8, boxShadow: '0px 2px 6px 2px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3)', position: 'absolute', top: 'calc(100% + 2px)', left: 0, right: 0, zIndex: 10 }}>
+        <div style={{ backgroundColor: 'white', borderRadius: 4, padding: 8, marginTop: 2, boxShadow: '0px 2px 6px 2px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3)' }}>
           {['Menu item', 'Menu item', 'Menu item'].map((label, i) => (
             <div key={i} style={{ height: 40, display: 'flex', alignItems: 'center', padding: 8 }}>
               <span style={{ ...FONT, color: '#4a4a4a' }}>{label}</span>
@@ -171,7 +171,7 @@ function MultiSelectStatic({ state = 'enabled' }) {
   const iconColor = getIconColor(state)
   const checkColor = state === 'disabled' ? '#9E9E9E' : state === 'error' ? '#E9786B' : '#9E9E9E'
   return (
-    <div style={{ width: 210, position: 'relative' }}>
+    <div style={{ width: 210 }}>
       <div style={{ paddingBottom: 8 }}>
         <span style={{ ...FONT, color: getLabelColor(state) }}>Label</span>
       </div>
@@ -189,7 +189,7 @@ function MultiSelectStatic({ state = 'enabled' }) {
         </div>
       </div>
       {isOpen && (
-        <div style={{ backgroundColor: 'white', borderRadius: 4, padding: 8, boxShadow: '0px 2px 6px 2px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3)', position: 'absolute', top: 'calc(100% + 2px)', left: 0, right: 0, zIndex: 10 }}>
+        <div style={{ backgroundColor: 'white', borderRadius: 4, padding: 8, marginTop: 2, boxShadow: '0px 2px 6px 2px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3)' }}>
           <div style={{ height: 40, display: 'flex', alignItems: 'center', gap: 8, padding: 8 }}>
             <CheckboxIcon checked={true} />
             <span style={{ ...FONT, color: '#4a4a4a' }}>Menu item</span>
@@ -268,12 +268,11 @@ function InteractiveMultiSelect({ label = 'Tags' }) {
   }, [])
 
   const handleToggle = (id) => setSelectedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id])
-  const handleClear = (e) => { e.stopPropagation(); setSelectedIds([]) }
+  const removeFirst = (e) => { e.stopPropagation(); setSelectedIds(prev => prev.slice(1)) }
 
   const hasSelection = selectedIds.length > 0
-  const displayText = hasSelection
-    ? MULTI_OPTIONS.filter(o => selectedIds.includes(o.id)).map(o => o.label).join(', ')
-    : 'Selecione...'
+  const firstSelected = MULTI_OPTIONS.find(o => o.id === selectedIds[0])
+  const extraCount = selectedIds.length - 1
 
   return (
     <div ref={ref} style={{ width: 280, position: 'relative' }}>
@@ -284,18 +283,36 @@ function InteractiveMultiSelect({ label = 'Tags' }) {
         onClick={() => setIsOpen(o => !o)}
         style={{ ...FIELD_BASE, width: '100%', border: isOpen ? '1px solid #304a64' : '1px solid #E9EFF2', background: 'transparent', cursor: 'pointer' }}
       >
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0 }}>
-          <path d="M4 10.5L8 14L16 6.5" stroke={hasSelection ? '#304A64' : '#9E9E9E'} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-        <span style={{ ...FONT, flex: 1, textAlign: 'left', color: hasSelection ? '#4A4A4A' : '#666', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          {displayText}
-        </span>
-        <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
-          {hasSelection && (
-            <button onClick={handleClear} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex' }}>
-              <X size={18} color="#4A4A4A" strokeWidth={1.5} />
-            </button>
-          )}
+        {!hasSelection ? (
+          <>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0 }}>
+              <path d="M4 10.5L8 14L16 6.5" stroke="#9E9E9E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span style={{ ...FONT, flex: 1, textAlign: 'left', color: '#666' }}>Selecione...</span>
+          </>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', flex: 1, gap: 8, minWidth: 0 }}>
+            {/* Primeiro item como chip */}
+            <div style={{ display: 'flex', alignItems: 'center', flexShrink: 0 }}>
+              <span style={{ ...FONT, color: '#666', whiteSpace: 'nowrap' }}>{firstSelected?.label}</span>
+              <button
+                onClick={removeFirst}
+                style={{ background: 'none', border: 'none', padding: '0 0 0 2px', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+              >
+                <X size={16} color="#666" strokeWidth={2} />
+              </button>
+            </div>
+            {/* Badge de itens extras */}
+            {extraCount > 0 && (
+              <div style={{ backgroundColor: '#e6f4fd', borderRadius: 2, padding: '2px 8px', flexShrink: 0 }}>
+                <span style={{ fontFamily: '"Red Hat Display", sans-serif', fontWeight: 500, fontSize: 14, lineHeight: '20px', letterSpacing: '0.1px', color: '#666' }}>
+                  +{extraCount}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+        <div style={{ flexShrink: 0 }}>
           {isOpen
             ? <ChevronUp size={20} color="#304a64" strokeWidth={1.5} />
             : <ChevronDown size={20} color="#4A4A4A" strokeWidth={1.5} />
@@ -328,23 +345,23 @@ export default function SelectPage() {
         <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-1">Select — Estados</h2>
           <p className="text-sm text-[#666666] mb-6">Cinco estados do componente de seleção única.</p>
-          <div className="bg-white rounded-[14px] border border-black/10 p-8 overflow-x-auto">
-            <table className="mx-auto border-separate" style={{ borderSpacing: '0 4px' }}>
+          <div className="bg-white rounded-[14px] border border-black/10 overflow-hidden">
+            <table className="w-full">
               <thead>
-                <tr>
-                  {STATES.map(s => (
-                    <th key={s} className="text-center pb-4 px-6" style={TH_STYLE}>{STATE_LABELS[s]}</th>
-                  ))}
+                <tr className="border-b border-[#E9EFF2] bg-[#FAFAFA]">
+                  <th className="text-left p-4 text-sm font-medium text-[#13283C] w-36">Estado</th>
+                  <th className="text-left p-4 text-sm font-medium text-[#13283C]">Componente</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  {STATES.map(state => (
-                    <td key={state} className="px-6 py-4 text-center align-top" style={{ minHeight: 180 }}>
+                {STATES.map((state, i) => (
+                  <tr key={state} className={i < STATES.length - 1 ? 'border-b border-[#E9EFF2]' : ''}>
+                    <td className="p-4 text-sm text-[#666666] align-top pt-6">{STATE_LABELS[state]}</td>
+                    <td className="p-4">
                       <SelectStatic state={state} />
                     </td>
-                  ))}
-                </tr>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
@@ -354,23 +371,23 @@ export default function SelectPage() {
         <div className="mb-12">
           <h2 className="text-xl font-medium text-[#13283C] mb-1">Multi-Select — Estados</h2>
           <p className="text-sm text-[#666666] mb-6">Cinco estados do componente de seleção múltipla com checkbox e botão de limpar.</p>
-          <div className="bg-white rounded-[14px] border border-black/10 p-8 overflow-x-auto">
-            <table className="mx-auto border-separate" style={{ borderSpacing: '0 4px' }}>
+          <div className="bg-white rounded-[14px] border border-black/10 overflow-hidden">
+            <table className="w-full">
               <thead>
-                <tr>
-                  {STATES.map(s => (
-                    <th key={s} className="text-center pb-4 px-6" style={TH_STYLE}>{STATE_LABELS[s]}</th>
-                  ))}
+                <tr className="border-b border-[#E9EFF2] bg-[#FAFAFA]">
+                  <th className="text-left p-4 text-sm font-medium text-[#13283C] w-36">Estado</th>
+                  <th className="text-left p-4 text-sm font-medium text-[#13283C]">Componente</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  {STATES.map(state => (
-                    <td key={state} className="px-6 py-4 text-center align-top" style={{ minHeight: 180 }}>
+                {STATES.map((state, i) => (
+                  <tr key={state} className={i < STATES.length - 1 ? 'border-b border-[#E9EFF2]' : ''}>
+                    <td className="p-4 text-sm text-[#666666] align-top pt-6">{STATE_LABELS[state]}</td>
+                    <td className="p-4">
                       <MultiSelectStatic state={state} />
                     </td>
-                  ))}
-                </tr>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

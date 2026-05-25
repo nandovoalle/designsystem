@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { PageHeader } from '../components/PageHeader'
 
 // ── SVG shape components ──────────────────────────────────────────────────────
@@ -64,29 +65,64 @@ const OtherShape = () => (
 
 // ── Individual file icon badge ─────────────────────────────────────────────────
 
-function FileIcon({ color, ext, Shape }) {
+function FileIcon({ color, ext, Shape, shapeName }) {
+  const [copied, setCopied] = useState(false)
+
+  function handleClick() {
+    const snippet = `<FileIcon color="${color}" ext="${ext}" Shape={${shapeName}} />`
+    navigator.clipboard.writeText(snippet)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+  }
+
   return (
-    <div
-      style={{ backgroundColor: color }}
-      className="flex flex-col items-center justify-center gap-0.5 rounded-[3px] shrink-0 size-8"
-    >
-      <div className="shrink-0 leading-[0]">
-        <Shape />
-      </div>
-      <span
-        style={{
-          fontFamily: '"Red Hat Display", sans-serif',
-          fontWeight: 900,
-          fontSize: '8.25px',
-          lineHeight: 'normal',
-          color: '#ffffff',
-          textAlign: 'center',
-          whiteSpace: 'nowrap',
-          flexShrink: 0,
-        }}
+    <div className="relative flex flex-col items-center" style={{ cursor: 'pointer' }} onClick={handleClick}>
+      <div
+        style={{ backgroundColor: color }}
+        className="flex flex-col items-center justify-center gap-0.5 rounded-[3px] shrink-0 size-8"
       >
-        {ext}
-      </span>
+        <div className="shrink-0 leading-[0]">
+          <Shape />
+        </div>
+        <span
+          style={{
+            fontFamily: '"Red Hat Display", sans-serif',
+            fontWeight: 900,
+            fontSize: '8.25px',
+            lineHeight: 'normal',
+            color: '#ffffff',
+            textAlign: 'center',
+            whiteSpace: 'nowrap',
+            flexShrink: 0,
+          }}
+        >
+          {ext}
+        </span>
+      </div>
+
+      {/* Tooltip "Copiado!" */}
+      {copied && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 'calc(100% + 6px)',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            backgroundColor: '#13283C',
+            color: '#fff',
+            fontSize: 11,
+            fontFamily: '"Red Hat Display", sans-serif',
+            fontWeight: 500,
+            whiteSpace: 'nowrap',
+            borderRadius: 4,
+            padding: '3px 8px',
+            pointerEvents: 'none',
+            zIndex: 10,
+          }}
+        >
+          Copiado!
+        </div>
+      )}
     </div>
   )
 }
@@ -110,7 +146,7 @@ function Category({ label, icons, gap = 32 }) {
       </p>
       <div className="flex items-start" style={{ gap }}>
         {icons.map((item, i) => (
-          <FileIcon key={i} color={item.color} ext={item.ext} Shape={item.Shape} />
+          <FileIcon key={i} color={item.color} ext={item.ext} Shape={item.Shape} shapeName={item.shapeName} />
         ))}
       </div>
     </div>
@@ -123,82 +159,82 @@ const CATEGORIES = [
   {
     label: 'Documentos',
     icons: [
-      { ext: 'DOC',  color: '#2b579a', Shape: DocShape },
-      { ext: 'DOCX', color: '#2b579a', Shape: DocShape },
-      { ext: 'PDF',  color: '#e9786b', Shape: DocShape },
-      { ext: 'TXT',  color: '#808080', Shape: DocShape },
-      { ext: 'RTF',  color: '#4caf50', Shape: DocShape },
-      { ext: 'ODT',  color: '#018e42', Shape: DocShape },
+      { ext: 'DOC',  color: '#2b579a', Shape: DocShape,          shapeName: 'DocShape' },
+      { ext: 'DOCX', color: '#2b579a', Shape: DocShape,          shapeName: 'DocShape' },
+      { ext: 'PDF',  color: '#e9786b', Shape: DocShape,          shapeName: 'DocShape' },
+      { ext: 'TXT',  color: '#808080', Shape: DocShape,          shapeName: 'DocShape' },
+      { ext: 'RTF',  color: '#4caf50', Shape: DocShape,          shapeName: 'DocShape' },
+      { ext: 'ODT',  color: '#018e42', Shape: DocShape,          shapeName: 'DocShape' },
     ],
   },
   {
     label: 'Planilhas',
     icons: [
-      { ext: 'XLS',  color: '#217346', Shape: SpreadsheetShape },
-      { ext: 'XLSX', color: '#217346', Shape: SpreadsheetShape },
-      { ext: 'CSV',  color: '#4aa35a', Shape: SpreadsheetShape },
-      { ext: 'ODS',  color: '#83b63e', Shape: SpreadsheetShape },
+      { ext: 'XLS',  color: '#217346', Shape: SpreadsheetShape,  shapeName: 'SpreadsheetShape' },
+      { ext: 'XLSX', color: '#217346', Shape: SpreadsheetShape,  shapeName: 'SpreadsheetShape' },
+      { ext: 'CSV',  color: '#4aa35a', Shape: SpreadsheetShape,  shapeName: 'SpreadsheetShape' },
+      { ext: 'ODS',  color: '#83b63e', Shape: SpreadsheetShape,  shapeName: 'SpreadsheetShape' },
     ],
   },
   {
     label: 'Apresentações',
     icons: [
-      { ext: 'PPT',  color: '#e67e22', Shape: PresentationShape },
-      { ext: 'PPTX', color: '#d35400', Shape: PresentationShape },
-      { ext: 'ODT',  color: '#2874a6', Shape: PresentationShape },
+      { ext: 'PPT',  color: '#e67e22', Shape: PresentationShape, shapeName: 'PresentationShape' },
+      { ext: 'PPTX', color: '#d35400', Shape: PresentationShape, shapeName: 'PresentationShape' },
+      { ext: 'ODT',  color: '#2874a6', Shape: PresentationShape, shapeName: 'PresentationShape' },
     ],
   },
   {
     label: 'Imagens',
     icons: [
-      { ext: 'JPG',  color: '#5dade2', Shape: ImageShape },
-      { ext: 'JPEG', color: '#58d68d', Shape: ImageShape },
-      { ext: 'PNG',  color: '#a569bd', Shape: ImageShape },
-      { ext: 'GIF',  color: '#f4d03f', Shape: ImageShape },
-      { ext: 'BMP',  color: '#ec7063', Shape: ImageShape },
-      { ext: 'TIFF', color: '#f39c12', Shape: ImageShape },
+      { ext: 'JPG',  color: '#5dade2', Shape: ImageShape,        shapeName: 'ImageShape' },
+      { ext: 'JPEG', color: '#58d68d', Shape: ImageShape,        shapeName: 'ImageShape' },
+      { ext: 'PNG',  color: '#a569bd', Shape: ImageShape,        shapeName: 'ImageShape' },
+      { ext: 'GIF',  color: '#f4d03f', Shape: ImageShape,        shapeName: 'ImageShape' },
+      { ext: 'BMP',  color: '#ec7063', Shape: ImageShape,        shapeName: 'ImageShape' },
+      { ext: 'TIFF', color: '#f39c12', Shape: ImageShape,        shapeName: 'ImageShape' },
     ],
   },
   {
     label: 'Áudio',
     icons: [
-      { ext: 'MP3',  color: '#5658ff', Shape: AudioShape },
-      { ext: 'WAV',  color: '#154360', Shape: AudioShape },
-      { ext: 'FLAC', color: '#8e44ad', Shape: AudioShape },
-      { ext: 'AAC',  color: '#c0392b', Shape: AudioShape },
+      { ext: 'MP3',  color: '#5658ff', Shape: AudioShape,        shapeName: 'AudioShape' },
+      { ext: 'WAV',  color: '#154360', Shape: AudioShape,        shapeName: 'AudioShape' },
+      { ext: 'FLAC', color: '#8e44ad', Shape: AudioShape,        shapeName: 'AudioShape' },
+      { ext: 'AAC',  color: '#c0392b', Shape: AudioShape,        shapeName: 'AudioShape' },
     ],
   },
   {
     label: 'Código',
     icons: [
-      { ext: 'SQL',  color: '#00bcf2', Shape: SqlShape },
-      { ext: 'HTML', color: '#e93e30', Shape: HtmlShape },
+      { ext: 'SQL',  color: '#00bcf2', Shape: SqlShape,          shapeName: 'SqlShape' },
+      { ext: 'HTML', color: '#e93e30', Shape: HtmlShape,         shapeName: 'HtmlShape' },
     ],
   },
   {
     label: 'Vídeo',
     icons: [
-      { ext: 'MP4', color: '#1abc9c', Shape: VideoShape },
-      { ext: 'AVI', color: '#2d70ed', Shape: VideoShape },
-      { ext: 'MOV', color: '#7f8c8d', Shape: VideoShape },
-      { ext: 'MKV', color: '#cf8d2a', Shape: VideoShape },
+      { ext: 'MP4',  color: '#1abc9c', Shape: VideoShape,        shapeName: 'VideoShape' },
+      { ext: 'AVI',  color: '#2d70ed', Shape: VideoShape,        shapeName: 'VideoShape' },
+      { ext: 'MOV',  color: '#7f8c8d', Shape: VideoShape,        shapeName: 'VideoShape' },
+      { ext: 'MKV',  color: '#cf8d2a', Shape: VideoShape,        shapeName: 'VideoShape' },
     ],
   },
   {
     label: 'Compactados',
     icons: [
-      { ext: 'ZIP', color: '#f1c40f', Shape: ZipShape },
-      { ext: 'RAR', color: '#8e44ad', Shape: ZipShape },
-      { ext: '7Z',  color: '#2980b9', Shape: ZipShape },
-      { ext: 'TAR', color: '#e67e22', Shape: ZipShape },
-      { ext: 'GZ',  color: '#27ae60', Shape: ZipShape },
+      { ext: 'ZIP',  color: '#f1c40f', Shape: ZipShape,          shapeName: 'ZipShape' },
+      { ext: 'RAR',  color: '#8e44ad', Shape: ZipShape,          shapeName: 'ZipShape' },
+      { ext: '7Z',   color: '#2980b9', Shape: ZipShape,          shapeName: 'ZipShape' },
+      { ext: 'TAR',  color: '#e67e22', Shape: ZipShape,          shapeName: 'ZipShape' },
+      { ext: 'GZ',   color: '#27ae60', Shape: ZipShape,          shapeName: 'ZipShape' },
     ],
   },
   {
     label: 'Outros',
     gap: 28,
     icons: [
-      { ext: 'OUT', color: '#34495e', Shape: OtherShape },
+      { ext: 'OUT',  color: '#34495e', Shape: OtherShape,        shapeName: 'OtherShape' },
     ],
   },
 ]

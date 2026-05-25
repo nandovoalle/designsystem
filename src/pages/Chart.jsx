@@ -1,4 +1,4 @@
-import { RefreshCw, GripVertical } from 'lucide-react'
+import { RefreshCw, GripVertical, PieChart, BarChart2, Activity } from 'lucide-react'
 import { PageHeader } from '../components/PageHeader'
 import { ChartCard, DonutChart, SegmentedProgressBar, RadialPerformanceChart } from '../components/ui/Chart'
 
@@ -17,19 +17,47 @@ function LegendDot({ color }) {
   return <span className="inline-block w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: color }} />
 }
 
-function SectionWrapper({ children, vertical = false }) {
-  if (vertical) {
-    return (
-      <div className="flex flex-col gap-10 p-10 bg-[#F5F5F5] border border-[#E9EFF2] rounded-[16px]">
-        {children}
-      </div>
-    )
+function VariantBadge({ label, variant = 'default' }) {
+  const styles = {
+    default:  'bg-[#F0F4F8] text-[#304A64]',
+    empty:    'bg-[#F5F5F5] text-[#9E9E9E]',
+    single:   'bg-[#EEF7FF] text-[#0094EE]',
   }
   return (
-    <div className="overflow-x-auto rounded-[16px]">
-      <div className="flex gap-10 p-10 min-w-max bg-[#F5F5F5] border border-[#E9EFF2] rounded-[16px] items-start">
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${styles[variant]}`}>
+      {label}
+    </span>
+  )
+}
+
+function SectionHeader({ icon: Icon, title, description }) {
+  return (
+    <div className="flex items-start gap-3 mb-6">
+      <div className="flex items-center justify-center w-9 h-9 rounded-[10px] bg-[#EEF7FF] text-[#0094EE] shrink-0 mt-0.5">
+        <Icon size={18} />
+      </div>
+      <div>
+        <h2 className="text-lg font-semibold text-[#13283C] leading-tight">{title}</h2>
+        <p className="text-sm text-[#666666] mt-0.5">{description}</p>
+      </div>
+    </div>
+  )
+}
+
+function PreviewBlock({ children, vertical = false }) {
+  return (
+    <div className="bg-[#F5F5F5] border border-[#E9EFF2] rounded-[16px] p-8">
+      <div className={`flex gap-6 items-start ${vertical ? 'flex-col' : 'flex-wrap'}`}>
         {children}
       </div>
+    </div>
+  )
+}
+
+function VariantLabel({ label, variant }) {
+  return (
+    <div className="mb-3">
+      <VariantBadge label={label} variant={variant} />
     </div>
   )
 }
@@ -46,65 +74,72 @@ const DONUT_DATA = [
 function DonutCard01() {
   const segments = DONUT_DATA.map(({ count, color }) => ({ value: count, color }))
   return (
-    <ChartCard title="Motivos de desconexão" style={{ width: 456 }}>
-      <div className="flex gap-2 items-center justify-center px-2 py-4">
-        <DonutChart segments={segments} />
-        {/* Legend */}
-        <div className="flex flex-col shrink-0" style={{ width: 134 }}>
-          {DONUT_DATA.map(({ label, color }) => (
-            <div key={label} className="flex gap-2 items-center px-2 py-1 rounded-[3px]">
-              <LegendDot color={color} />
-              <span className="text-[14px] text-[#4A4A4A] leading-6 tracking-[0.15px]">{label}</span>
-            </div>
-          ))}
+    <div>
+      <VariantLabel label="Múltiplos segmentos" variant="default" />
+      <ChartCard title="Motivos de desconexão" style={{ width: 456 }}>
+        <div className="flex gap-2 items-center justify-center px-2 py-4">
+          <DonutChart segments={segments} />
+          <div className="flex flex-col shrink-0" style={{ width: 134 }}>
+            {DONUT_DATA.map(({ label, color }) => (
+              <div key={label} className="flex gap-2 items-center px-2 py-1 rounded-[3px]">
+                <LegendDot color={color} />
+                <span className="text-[14px] text-[#4A4A4A] leading-6 tracking-[0.15px]">{label}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col shrink-0" style={{ width: 89 }}>
+            {DONUT_DATA.map(({ label, count, pct }) => (
+              <div key={label} className="flex gap-6 items-center justify-end h-[26px]">
+                <span className="text-[14px] font-bold text-[#4A4A4A] leading-6 w-9 text-right">{count}</span>
+                <span className="text-[14px] font-bold text-[#4A4A4A] leading-6 w-7 text-right">{pct}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        {/* Data */}
-        <div className="flex flex-col shrink-0" style={{ width: 89 }}>
-          {DONUT_DATA.map(({ label, count, pct }) => (
-            <div key={label} className="flex gap-6 items-center justify-end h-[26px]">
-              <span className="text-[14px] font-bold text-[#4A4A4A] leading-6 w-9 text-right">{count}</span>
-              <span className="text-[14px] font-bold text-[#4A4A4A] leading-6 w-7 text-right">{pct}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </ChartCard>
+      </ChartCard>
+    </div>
   )
 }
 
 function DonutCard02() {
   const segments = [{ value: 2246, color: C.red }]
   return (
-    <ChartCard title="Motivos de desconexão" style={{ width: 456 }}>
-      <div className="flex gap-2 items-center justify-center px-2 py-4" style={{ paddingLeft: 56 }}>
-        <DonutChart segments={segments} />
-        <div className="flex flex-col flex-1 px-2">
-          <div className="flex gap-2 items-center py-1 rounded-[3px]">
-            <LegendDot color={C.red} />
-            <span className="text-[14px] text-[#4A4A4A] leading-6 tracking-[0.15px]">Lost service</span>
+    <div>
+      <VariantLabel label="Segmento único" variant="single" />
+      <ChartCard title="Motivos de desconexão" style={{ width: 456 }}>
+        <div className="flex gap-2 items-center justify-center px-2 py-4" style={{ paddingLeft: 56 }}>
+          <DonutChart segments={segments} />
+          <div className="flex flex-col flex-1 px-2">
+            <div className="flex gap-2 items-center py-1 rounded-[3px]">
+              <LegendDot color={C.red} />
+              <span className="text-[14px] text-[#4A4A4A] leading-6 tracking-[0.15px]">Lost service</span>
+            </div>
+          </div>
+          <div className="flex flex-col shrink-0" style={{ paddingRight: 54 }}>
+            <div className="flex gap-6 items-center justify-end h-[26px]">
+              <span className="text-[14px] font-bold text-[#4A4A4A] leading-6 w-9 text-right">2246</span>
+              <span className="text-[14px] font-bold text-[#4A4A4A] leading-6 w-8 text-right">100%</span>
+            </div>
           </div>
         </div>
-        <div className="flex flex-col shrink-0" style={{ paddingRight: 54 }}>
-          <div className="flex gap-6 items-center justify-end h-[26px]">
-            <span className="text-[14px] font-bold text-[#4A4A4A] leading-6 w-9 text-right">2246</span>
-            <span className="text-[14px] font-bold text-[#4A4A4A] leading-6 w-8 text-right">100%</span>
-          </div>
-        </div>
-      </div>
-    </ChartCard>
+      </ChartCard>
+    </div>
   )
 }
 
 function DonutCard03() {
   return (
-    <ChartCard title="Motivos de desconexão" style={{ width: 456 }}>
-      <div className="flex gap-2 items-center justify-center px-2 py-4">
-        <DonutChart segments={[]} />
-        <span className="text-[14px] text-[#4A4A4A] leading-6 tracking-[0.15px] whitespace-nowrap">
-          Sem resultado no momento
-        </span>
-      </div>
-    </ChartCard>
+    <div>
+      <VariantLabel label="Estado vazio" variant="empty" />
+      <ChartCard title="Motivos de desconexão" style={{ width: 456 }}>
+        <div className="flex gap-2 items-center justify-center px-2 py-4">
+          <DonutChart segments={[]} />
+          <span className="text-[14px] text-[#4A4A4A] leading-6 tracking-[0.15px] whitespace-nowrap">
+            Sem resultado no momento
+          </span>
+        </div>
+      </ChartCard>
+    </div>
   )
 }
 
@@ -134,16 +169,19 @@ function ProgressCard01() {
   const counts = { atrasadas: 45, paraHoje: 8, emDia: 147 }
   const segments = STATUS_CONFIG.map(s => ({ value: counts[s.key], color: s.color }))
   return (
-    <ChartCard title="Demandas criadas por mim" showInfoIcon style={{ width: 456 }}>
-      <div className="flex flex-col gap-6 items-center px-2 py-4">
-        <SegmentedProgressBar segments={segments} />
-        <div className="flex gap-2 items-center justify-center w-full">
-          {STATUS_CONFIG.map(s => (
-            <StatusCount key={s.key} color={s.color} label={s.label} count={counts[s.key]} />
-          ))}
+    <div>
+      <VariantLabel label="Com dados" variant="default" />
+      <ChartCard title="Demandas criadas por mim" showInfoIcon style={{ width: 456 }}>
+        <div className="flex flex-col gap-6 items-center px-2 py-4">
+          <SegmentedProgressBar segments={segments} />
+          <div className="flex gap-2 items-center justify-center w-full">
+            {STATUS_CONFIG.map(s => (
+              <StatusCount key={s.key} color={s.color} label={s.label} count={counts[s.key]} />
+            ))}
+          </div>
         </div>
-      </div>
-    </ChartCard>
+      </ChartCard>
+    </div>
   )
 }
 
@@ -151,16 +189,19 @@ function ProgressCard02() {
   const counts = { atrasadas: 0, paraHoje: 0, emDia: 0 }
   const segments = STATUS_CONFIG.map(s => ({ value: counts[s.key], color: s.color }))
   return (
-    <ChartCard title="Demandas criadas por mim" showInfoIcon style={{ width: 456 }}>
-      <div className="flex flex-col gap-6 items-center px-2 py-4">
-        <SegmentedProgressBar segments={segments} />
-        <div className="flex gap-2 items-center justify-center w-full">
-          {STATUS_CONFIG.map(s => (
-            <StatusCount key={s.key} color={s.color} label={s.label} count={counts[s.key]} />
-          ))}
+    <div>
+      <VariantLabel label="Estado vazio" variant="empty" />
+      <ChartCard title="Demandas criadas por mim" showInfoIcon style={{ width: 456 }}>
+        <div className="flex flex-col gap-6 items-center px-2 py-4">
+          <SegmentedProgressBar segments={segments} />
+          <div className="flex gap-2 items-center justify-center w-full">
+            {STATUS_CONFIG.map(s => (
+              <StatusCount key={s.key} color={s.color} label={s.label} count={counts[s.key]} />
+            ))}
+          </div>
         </div>
-      </div>
-    </ChartCard>
+      </ChartCard>
+    </div>
   )
 }
 
@@ -187,46 +228,42 @@ function PerfStat({ color, label, count, duration }) {
   )
 }
 
-function PerformanceCardBase({ stats, rings }) {
+function PerformanceCardBase({ stats, rings, variantLabel, variantType }) {
   return (
-    <div className="bg-white border border-[#E9EFF2] rounded-[4px] shrink-0" style={{ width: 421, height: 365 }}>
-      {/* Header */}
-      <div className="border-b border-[#E9EFF2] flex items-center justify-between pl-4 pr-2 py-[10px]">
-        <p className="text-[16px] font-bold text-[#4A4A4A] leading-6 tracking-[0.15px] whitespace-nowrap">
-          Meu desempenho{' '}
-          <span className="font-normal text-[#4A4A4A]">— Março 2024</span>
-        </p>
-        <button className="flex items-center justify-center w-6 h-6 text-[#4A4A4A] cursor-grab">
-          <GripVertical size={20} />
-        </button>
-      </div>
-
-      {/* Body */}
-      <div className="flex flex-col px-6 pt-6" style={{ gap: 46 }}>
-        <div className="flex gap-6 items-center">
-          {/* Stats */}
-          <div className="flex flex-col gap-4" style={{ width: 163 }}>
-            {PERF_CONFIG.map(({ key, label, color }) => (
-              <PerfStat
-                key={key}
-                color={color}
-                label={label}
-                count={stats[key].count}
-                duration={stats[key].duration}
-              />
-            ))}
-          </div>
-          {/* Chart */}
-          <RadialPerformanceChart rings={rings} size={174} />
-        </div>
-
-        {/* Footer */}
-        <div className="flex gap-2 items-center pb-4">
-          <RefreshCw size={20} className="text-[#4A4A4A] shrink-0" />
-          <p className="text-[14px] text-[#4A4A4A] leading-6 tracking-[0.15px] whitespace-nowrap">
-            Última atualização{' '}
-            <strong className="font-bold">hoje às 9h 34min</strong>
+    <div>
+      <VariantLabel label={variantLabel} variant={variantType} />
+      <div className="bg-white border border-[#E9EFF2] rounded-[4px] shrink-0" style={{ width: 421, height: 365 }}>
+        <div className="border-b border-[#E9EFF2] flex items-center justify-between pl-4 pr-2 py-[10px]">
+          <p className="text-[16px] font-bold text-[#4A4A4A] leading-6 tracking-[0.15px] whitespace-nowrap">
+            Meu desempenho{' '}
+            <span className="font-normal text-[#4A4A4A]">— Março 2024</span>
           </p>
+          <button className="flex items-center justify-center w-6 h-6 text-[#4A4A4A] cursor-grab">
+            <GripVertical size={20} />
+          </button>
+        </div>
+        <div className="flex flex-col px-6 pt-6" style={{ gap: 46 }}>
+          <div className="flex gap-6 items-center">
+            <div className="flex flex-col gap-4" style={{ width: 163 }}>
+              {PERF_CONFIG.map(({ key, label, color }) => (
+                <PerfStat
+                  key={key}
+                  color={color}
+                  label={label}
+                  count={stats[key].count}
+                  duration={stats[key].duration}
+                />
+              ))}
+            </div>
+            <RadialPerformanceChart rings={rings} size={174} />
+          </div>
+          <div className="flex gap-2 items-center pb-4">
+            <RefreshCw size={20} className="text-[#4A4A4A] shrink-0" />
+            <p className="text-[14px] text-[#4A4A4A] leading-6 tracking-[0.15px] whitespace-nowrap">
+              Última atualização{' '}
+              <strong className="font-bold">hoje às 9h 34min</strong>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -244,7 +281,7 @@ function PerformanceCard01() {
     { value: 38, color: C.green  },
     { value: 72, color: C.purple },
   ]
-  return <PerformanceCardBase stats={stats} rings={rings} />
+  return <PerformanceCardBase stats={stats} rings={rings} variantLabel="Com dados" variantType="default" />
 }
 
 function PerformanceCard02() {
@@ -258,7 +295,20 @@ function PerformanceCard02() {
     { value: 0, color: C.green  },
     { value: 0, color: C.purple },
   ]
-  return <PerformanceCardBase stats={stats} rings={rings} />
+  return <PerformanceCardBase stats={stats} rings={rings} variantLabel="Estado vazio" variantType="empty" />
+}
+
+// ── Color Token Row ───────────────────────────────────────────────────────────
+
+function TokenRow({ label, color, token, hex }) {
+  return (
+    <div className="flex items-center gap-4 py-3 border-b border-[#F0F0F0] last:border-0">
+      <div className="w-8 h-8 rounded-[6px] border border-black/10 shrink-0" style={{ backgroundColor: color }} />
+      <span className="text-sm font-medium text-[#13283C] flex-1 min-w-0">{label}</span>
+      <code className="text-xs font-mono text-[#304A64] bg-[#F0F4F8] px-2 py-0.5 rounded hidden sm:block">{token}</code>
+      <code className="text-xs font-mono text-[#9E9E9E] w-20 text-right shrink-0">{hex}</code>
+    </div>
+  )
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -272,89 +322,85 @@ export default function ChartPage() {
           description="Componentes de visualização de dados: gráfico de rosca, barra segmentada e gráfico de desempenho radial."
         />
 
-        {/* Style 1 */}
-        <div className="mb-12">
-          <h2 className="text-xl font-medium text-[#13283C] mb-1">Gráfico de Rosca</h2>
-          <p className="text-sm text-[#666666] mb-6">
-            Exibe distribuição proporcional de dados com legenda e valores absolutos. Suporta múltiplos segmentos, segmento único e estado vazio.
-          </p>
-          <SectionWrapper vertical>
+        {/* Style 1 — Rosca */}
+        <section className="mb-14">
+          <SectionHeader
+            icon={PieChart}
+            title="Gráfico de Rosca"
+            description="Exibe distribuição proporcional de dados com legenda e valores absolutos. Suporta múltiplos segmentos, segmento único e estado vazio."
+          />
+          <PreviewBlock vertical>
             <DonutCard01 />
             <DonutCard02 />
             <DonutCard03 />
-          </SectionWrapper>
-        </div>
+          </PreviewBlock>
+        </section>
 
-        {/* Style 2 */}
-        <div className="mb-12">
-          <h2 className="text-xl font-medium text-[#13283C] mb-1">Barra de Status</h2>
-          <p className="text-sm text-[#666666] mb-6">
-            Barra horizontal segmentada para representar distribuição de demandas por status. Estado vazio exibe segmentos desabilitados.
-          </p>
-          <SectionWrapper>
+        {/* Style 2 — Barra */}
+        <section className="mb-14">
+          <SectionHeader
+            icon={BarChart2}
+            title="Barra de Status"
+            description="Barra horizontal segmentada para representar distribuição de demandas por status. Estado vazio exibe segmentos desabilitados."
+          />
+          <PreviewBlock>
             <ProgressCard01 />
             <ProgressCard02 />
-          </SectionWrapper>
-        </div>
+          </PreviewBlock>
+        </section>
 
-        {/* Style 3 */}
-        <div className="mb-12">
-          <h2 className="text-xl font-medium text-[#13283C] mb-1">Gráfico de Desempenho</h2>
-          <p className="text-sm text-[#666666] mb-6">
-            Anéis concêntricos que representam o desempenho individual por período (hoje, semana, mês). Cada anel usa uma cor semântica distinta.
-          </p>
-          <SectionWrapper>
+        {/* Style 3 — Desempenho */}
+        <section className="mb-14">
+          <SectionHeader
+            icon={Activity}
+            title="Gráfico de Desempenho"
+            description="Anéis concêntricos que representam o desempenho individual por período (hoje, semana, mês). Cada anel usa uma cor semântica distinta."
+          />
+          <PreviewBlock>
             <PerformanceCard01 />
             <PerformanceCard02 />
-          </SectionWrapper>
-        </div>
+          </PreviewBlock>
+        </section>
 
-        {/* Tokens */}
-        <div className="mb-12">
-          <h2 className="text-xl font-medium text-[#13283C] mb-4">Tokens de Cor</h2>
-          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
-            {[
-              ['Atrasadas / Lost service', '#E9786B', '--states/red'],
-              ['Para hoje / Admin-reset',  '#E9C16C', '--states/yellow'],
-              ['Em dia / User-request',    '#4BAF50', '--states/green'],
-              ['Hoje',                     '#0094EE', '--states/blue'],
-              ['Mês',                      '#8080EC', '--states/purple'],
-              ['Vazio / track',            'rgba(0,0,0,0.12)', '--states/black/disabledbg'],
-            ].map(([label, color, token]) => (
-              <div key={label} className="flex items-center gap-3">
-                <span className="inline-block w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: color }} />
-                <span className="font-medium text-[#13283C] min-w-[220px]">{label}</span>
-                <code className="text-xs font-mono text-[#9E9E9E]">{token}</code>
-                <code className="text-xs font-mono text-[#9E9E9E] ml-auto">{color}</code>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Tokens + Specs em grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-        {/* Especificações Técnicas */}
-        <div>
-          <h2 className="text-xl font-medium text-[#13283C] mb-4">Especificações Técnicas</h2>
-          <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-3 text-sm">
-            {[
-              ['ChartCard — largura',            '456px — fixa para Rosca e Barra de Status'],
-              ['ChartCard — header altura',      '40px — font 16px Bold, tracking 0.15px'],
-              ['Performance card — tamanho',     '421 × 365px'],
-              ['Performance card — header',      'py-10px, pl-4, pr-2 — 40px de altura aparente'],
-              ['Performance card — body padding','px-6 pt-6, gap 46px entre stats e footer'],
-              ['Legend dot',                     '8 × 8px, border-radius 50%'],
-              ['Número de destaque (contagem)',   '24px Bold, Red Hat Display, tracking 0.15px'],
-              ['Tipografia geral',               '14px / leading-6 (24px) / tracking 0.15px, Red Hat Display'],
-              ['Gap legenda interna',            '8px (entre dot, label e dados)'],
-              ['Anéis radiais',                  '3 níveis — Hoje (blue), Semana (green), Mês (purple)'],
-              ['Borda do card',                  '1px solid #E9EFF2 — var(--divider)'],
-              ['Border radius do card',          '4px (Performance) / 16px (Rosca e Barra)'],
-            ].map(([label, value]) => (
-              <div key={label} className="flex gap-2">
-                <span className="font-medium text-[#13283C] min-w-[260px]">{label}:</span>
-                <span className="text-[#666666]">{value}</span>
-              </div>
-            ))}
+          {/* Tokens de Cor */}
+          <div>
+            <h2 className="text-lg font-semibold text-[#13283C] mb-4">Tokens de Cor</h2>
+            <div className="bg-white rounded-[14px] border border-black/10 px-6 py-2">
+              <TokenRow label="Atrasadas / Lost service" color={C.red}    token="--states/red"              hex="#E9786B" />
+              <TokenRow label="Para hoje / Admin-reset"  color={C.yellow} token="--states/yellow"           hex="#E9C16C" />
+              <TokenRow label="Em dia / User-request"    color={C.green}  token="--states/green"            hex="#4BAF50" />
+              <TokenRow label="Hoje"                     color={C.blue}   token="--states/blue"             hex="#0094EE" />
+              <TokenRow label="Mês"                      color={C.purple} token="--states/purple"           hex="#8080EC" />
+              <TokenRow label="Vazio / track"            color="rgba(0,0,0,0.12)" token="--states/black/disabledbg" hex="rgba(0,0,0,.12)" />
+            </div>
           </div>
+
+          {/* Especificações Técnicas */}
+          <div>
+            <h2 className="text-lg font-semibold text-[#13283C] mb-4">Especificações Técnicas</h2>
+            <div className="bg-white rounded-[14px] border border-black/10 p-6 space-y-2.5 text-sm">
+              {[
+                ['ChartCard — largura',          '456px — fixa para Rosca e Barra'],
+                ['ChartCard — header',           '44px alt · 16px Bold · tracking 0.15px'],
+                ['Performance card',             '421 × 365px'],
+                ['Legend dot',                   '8 × 8px · border-radius 50%'],
+                ['Contagem destaque',            '24px Bold · Red Hat Display'],
+                ['Tipografia geral',             '14px / leading-6 / tracking 0.15px'],
+                ['Anéis radiais',               '3 níveis — Hoje · Semana · Mês'],
+                ['Borda do card',               '1px solid #E9EFF2 — var(--divider)'],
+                ['Border-radius',               '4px (Performance) · 16px (demais)'],
+              ].map(([label, value]) => (
+                <div key={label} className="flex gap-3 items-start">
+                  <span className="font-medium text-[#13283C] shrink-0 w-[180px] leading-snug">{label}</span>
+                  <span className="text-[#666666] leading-snug">{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

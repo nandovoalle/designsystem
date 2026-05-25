@@ -175,7 +175,12 @@ export function TextFieldLeadingIcon({ value, onChange, placeholder = 'Pesquisar
         backgroundColor: 'transparent',
       }}
     >
-      <Search size={18} color="#9e9e9e" strokeWidth={2} style={{ flexShrink: 0 }} />
+      <span
+        className="material-symbols-outlined"
+        style={{ fontSize: 18, color: '#9e9e9e', flexShrink: 0, lineHeight: 1, userSelect: 'none', fontVariationSettings: "'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}
+      >
+        search
+      </span>
       <input
         type="text"
         value={value}
@@ -197,6 +202,56 @@ export function TextFieldLeadingIcon({ value, onChange, placeholder = 'Pesquisar
           minWidth: 0,
         }}
       />
+    </div>
+  )
+}
+
+export function TextFieldDefault({ value, onChange, placeholder = 'Placeholder', label, width = 256 }) {
+  const [focused, setFocused] = useState(false)
+  return (
+    <div style={{ width }} className="flex flex-col">
+      {label && (
+        <div style={{ paddingBottom: 8 }}>
+          <span style={{ fontFamily: '"Red Hat Display", sans-serif', fontSize: 14, fontWeight: 400, lineHeight: '20px', letterSpacing: '0.25px', color: '#4a4a4a' }}>
+            {label}
+          </span>
+        </div>
+      )}
+      <div
+        style={{
+          height: 40,
+          border: `1px solid ${focused ? '#304a64' : '#e9eff2'}`,
+          borderRadius: 4,
+          padding: '4px 8px',
+          display: 'flex',
+          alignItems: 'center',
+          boxSizing: 'border-box',
+          transition: 'border-color 0.15s ease',
+          backgroundColor: 'transparent',
+        }}
+      >
+        <input
+          type="text"
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          style={{
+            flex: 1,
+            border: 'none',
+            outline: 'none',
+            background: 'transparent',
+            fontFamily: '"Red Hat Display", sans-serif',
+            fontSize: 14,
+            fontWeight: 400,
+            lineHeight: '20px',
+            letterSpacing: '0.25px',
+            color: '#4a4a4a',
+            minWidth: 0,
+          }}
+        />
+      </div>
     </div>
   )
 }

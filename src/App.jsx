@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Routes, Route, NavLink } from 'react-router-dom'
 import {
   Palette, House, Type, Globe, CircleAlert, Award, MousePointerClick, Navigation, Ruler,
@@ -51,6 +52,7 @@ import PriorityPage from './pages/Priority'
 import FilterPage from './pages/Filter'
 import IconFilesPage from './pages/IconFiles'
 import LogoPage from './pages/Logo'
+import { TextFieldLeadingIcon } from './pages/TextField'
 
 const navItems = [
   { to: '/',               label: 'Início',         Icon: House },
@@ -101,6 +103,12 @@ const navItems = [
 ]
 
 export default function App() {
+  const [searchQuery, setSearchQuery] = useState('')
+
+  const filteredNavItems = searchQuery.trim()
+    ? navItems.filter(item => !item.divider && item.label.toLowerCase().includes(searchQuery.toLowerCase()))
+    : navItems
+
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-white">
       {/* Sidebar */}
@@ -127,9 +135,22 @@ export default function App() {
           </svg>
         </div>
 
+        {/* Search */}
+        <div className="px-4 pb-2">
+          <TextFieldLeadingIcon
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+            placeholder="Pesquisar..."
+            width="100%"
+          />
+        </div>
+
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
-          {navItems.map((item, i) => {
+          {filteredNavItems.length === 0 && (
+            <p className="text-sm text-[#9E9E9E] px-3 py-2">Nenhum resultado.</p>
+          )}
+          {filteredNavItems.map((item, i) => {
             if (item.divider) {
               return (
                 <div key={`divider-${i}`} className="pt-4 pb-1 px-3">
